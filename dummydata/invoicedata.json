@@ -1,0 +1,100 @@
+{
+    "data": [
+      [
+        "04/17/2021",
+        "00001194",
+        "1",
+        "210",
+        "1990",
+        "<span id='id_00001194' class='fas fa-expand' data-toggle='modal' data-target='#modal-lg' onclick=openInvoiceModal(this)></span>"
+      ],
+      [
+        "04/17/2021",
+        "00001100",
+        "1",
+        "200",
+        "2000",
+        "<span id='id_00001100' class='fas fa-expand' data-toggle='modal' data-target='#modal-lg' onclick=openInvoiceModal(this)></span>"
+      ],
+      [
+        "04/17/2021",
+        "00001194",
+        "1",
+        "210",
+        "1990",
+        "<span id='id_00001194' class='fas fa-expand' data-toggle='modal' data-target='#modal-lg' onclick=openInvoiceModal(this)></span>"
+      ],
+      [
+        "04/17/2021",
+        "00001100",
+        "1",
+        "200",
+        "2000",
+        "<span id='id_00001100' class='fas fa-expand' data-toggle='modal' data-target='#modal-lg' onclick=openInvoiceModal(this)></span>"
+      ],
+      [
+        "04/17/2021",
+        "00001194",
+        "1",
+        "210",
+        "1990",
+        "<span id='id_00001194' class='fas fa-expand' data-toggle='modal' data-target='#modal-lg' onclick=openInvoiceModal(this)></span>"
+      ],
+      [
+        "04/17/2021",
+        "00001100",
+        "1",
+        "200",
+        "2000",
+        "<span id='id_00001100' class='fas fa-expand' data-toggle='modal' data-target='#modal-lg' onclick=openInvoiceModal(this)></span>"
+      ],
+      [
+        "04/17/2021",
+        "00001194",
+        "1",
+        "210",
+        "1990",
+        "<span id='id_00001194' class='fas fa-expand' data-toggle='modal' data-target='#modal-lg' onclick=openInvoiceModal(this)></span>"
+      ],
+      [
+        "04/17/2021",
+        "00001100",
+        "1",
+        "200",
+        "2000",
+        "<span id='id_00001100' class='fas fa-expand' data-toggle='modal' data-target='#modal-lg' onclick=openInvoiceModal(this)></span>"
+      ],
+      [
+        "04/17/2021",
+        "00001194",
+        "1",
+        "210",
+        "1990",
+        "<span id='id_00001194' class='fas fa-expand' data-toggle='modal' data-target='#modal-lg' onclick=openInvoiceModal(this)></span>"
+      ],
+      [
+        "04/17/2021",
+        "00001194",
+        "1",
+        "210",
+        "1990",
+        "<span id='id_00001194' class='fas fa-expand' data-toggle='modal' data-target='#modal-lg' onclick=openInvoiceModal(this)></span>"
+      ],
+      [
+        "04/17/2021",
+        "00001100",
+        "1",
+        "200",
+        "2000",
+        "<span id='id_00001100' class='fas fa-expand' data-toggle='modal' data-target='#modal-lg' onclick=openInvoiceModal(this)></span>"
+      ],
+      [
+        "04/17/2021",
+        "00001194",
+        "1",
+        "210",
+        "1990",
+        "<span id='id_00001194' class='fas fa-expand' data-toggle='modal' data-target='#modal-lg' onclick=openInvoiceModal(this)></span>"
+      ]
+    ]
+  }

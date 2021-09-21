@@ -1,0 +1,17 @@
+application/config/database.php
+application/config/config.php
+/.htaccess
+index.php
+
+application/logs/*
+!application/logs/index.html
+
+application/cache/*
+!application/cache/index.html
+
+composer.lock
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*

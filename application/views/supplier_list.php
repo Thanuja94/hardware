@@ -1,57 +1,140 @@
 <!-- Site wrapper -->
 <div class="wrapper">
-	<!-- Navbar -->
+    <!-- Navbar -->
 
-	<!-- /.navbar -->
+    <!-- /.navbar -->
 
 
-	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
-		<!-- Content Header (Page header) -->
-		<section class="content-header">
-			<div class="container-fluid">
-				<div class="row mb-2">
-					<div class="col-sm-6">
-						<h1 class="m-0 text-dark">Suppliers</h1>
-					</div>
-					<div class="col-sm-6">
-						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="#">Home</a></li>
-							<li class="breadcrumb-item active">Suppliers</li>
-						</ol>
-					</div>
-				</div>
-			</div><!-- /.container-fluid -->
-		</section>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Suppliers</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Suppliers</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
-		<!-- Main content -->
-		<section class="content">
+        <!-- Main content -->
+        <section class="content">
 
-			<!-- Default box -->
-			<div class="card">
-				<div class="card-header">
-					<h3 class="card-title">Title</h3>
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Supplier List
+                        <button id="add_new_supplier" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modal-default">
+                            <i class="fa fa-plus"></i> &nbsp;&nbsp; New Supplier</button>
+                    </h3>
 
-					<div class="card-tools">
-						<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-							<i class="fas fa-minus"></i></button>
-						<button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-							<i class="fas fa-times"></i></button>
-					</div>
-				</div>
-				<div class="card-body">
-					Start creating your amazing application!
-				</div>
-				<!-- /.card-body -->
-				<div class="card-footer">
-					Footer
-				</div>
-				<!-- /.card-footer-->
-			</div>
-			<!-- /.card -->
 
-		</section>
-		<!-- /.content -->
-	</div>
-	<!-- /.content-wrapper -->
+                    <br>
 
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Supplier Name</th>
+                                <th>Address</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th style="text-align:center">Status</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+
+                <!-- /.card-footer-->
+            </div>
+            <!-- /.card -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+</div>
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add New Supplier</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            </div>
+            <form id="form_data" method="post"
+                action="<?php echo base_url() ?>index.php/user/user/add_new_sys_user_page">
+                <div class="modal-body">
+
+
+                    <div class="form-group">
+                        <li class="fa fa-user">&nbsp;&nbsp;</li>
+                        <label for="input_username">Supplier Name</label>
+                        <br />
+                        <input class="form-control input-rounded" name="suppliername" id="input_username"
+                            placeholder="Supllier Name" required="" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <li class="fa fa-home">&nbsp;&nbsp;</li>
+                        <label>Supplier Address Line 1</label>
+                        <input class="form-control input-rounded" name="adderss1" placeholder="supplier address line 1"
+                            required="" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <li class="fa fa-home">&nbsp;&nbsp;</li>
+                        <label>Supplier Address Line 2</label>
+                        <input class="form-control input-rounded" name="adderss2" placeholder="supplier address line 2"
+                            required="" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <li class="fa fa-home">&nbsp;&nbsp;</li>
+                        <label>Supplier Address Line 3</label>
+                        <input class="form-control input-rounded" name="adderss3" placeholder="supplier address line 3"
+                            required="" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <li class="fa fa-envelope">&nbsp;&nbsp;</li>
+                        <label>Email</label>
+                        <input class="form-control input-rounded" name="email" placeholder="Email" required=""
+                            type="email">
+                    </div>
+
+                    <div class="form-group">
+                        <li class="fa fa-phone">&nbsp;&nbsp;</li>
+                        <label>Supplier Contact</label>
+                        <input class="form-control input-rounded" name="contact number" placeholder="contact number" required=""
+                            type="text">
+                    </div>
+
+
+
+                    <div class="modal-footer">
+                        <a href="javascript:;" class="btn btn-sm btn-white m-r-5 m-b-5" data-dismiss="modal">Close</a>
+                        <button type="submit" class="btn btn-sm btn-primary m-r-5 m-b-5 ">
+                            <i class="fa fa-user"></i>
+                            Submit
+                        </button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- <script>
+    $('#modal-dialog').modal({backdrop: 'static', keyboard: false})
+</script> -->

@@ -229,8 +229,8 @@ if (!isset($active_main_tab))
                 
 
                 <li class="nav-item has-treeview ">
-                    <a href="<?php echo base_url() ?>dashboard"
-                       class="nav-link <?php if ($active_tab == 'Dashboard') echo "active" ?>">
+                    <a href="<?php echo base_url() ?>GRN"
+                       class="nav-link <?php if ($active_tab == 'GRN') echo "active" ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             GRN

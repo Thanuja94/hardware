@@ -31,8 +31,13 @@
 			<div class="card">
 				<div class="card-header">
 					<h3 class="card-title">Supplier Invoice List
-                    <button id="add_new_grn" class="btn btn-primary">
-                            <i class="fa fa-plus"></i> &nbsp;&nbsp; New Supplier Invoice</button>
+                    <a href="<?php echo base_url()?>add_new_sup_invoice"> 
+                    <button id="add_new_grn" class="btn btn-primary"  >
+                       
+                       <i class="fa fa-plus"></i> &nbsp;&nbsp; New Supplier Invoice</button>
+                    </a>
+
+                    
                     </h3>
 
 				

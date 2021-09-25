@@ -74,6 +74,7 @@ $route['suppliers'] = 'dashboard/suppliers';
 $route['GRN'] = 'dashboard/view_GRN';
 $route['delivery_note'] = 'dashboard/delivery_note';
 $route['supplier_invoice'] = 'dashboard/supplier_invoice';
+$route['add_new_sup_invoice'] = 'dashboard/add_new_sup_invoice';
 
 //ajax routes
 $route['get_item_details'] = 'dashboard/get_item_details';

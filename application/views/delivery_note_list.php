@@ -1,45 +1,45 @@
 <!-- Site wrapper -->
 <div class="wrapper">
-	<!-- Navbar -->
+    <!-- Navbar -->
 
-	<!-- /.navbar -->
+    <!-- /.navbar -->
 
 
-	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
-		<!-- Content Header (Page header) -->
-		<section class="content-header">
-			<div class="container-fluid">
-				<div class="row mb-2">
-					<div class="col-sm-6">
-						<h1>Delivery Notes</h1>
-					</div>
-					<div class="col-sm-6">
-						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="#">Home</a></li>
-							<li class="breadcrumb-item active">Delivert Note</li>
-						</ol>
-					</div>
-				</div>
-			</div><!-- /.container-fluid -->
-		</section>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Delivery Notes</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Delivert Note</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
 
-		<!-- Main content -->
-		<section class="content">
+        <!-- Main content -->
+        <section class="content">
 
-			<!-- Default box -->
-			<div class="card">
-				<div class="card-header">
-					<h3 class="card-title">Dilivery Note List
-                    <button id="add_new_grn" class="btn btn-primary" data-toggle="modal"
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Dilivery Note List
+                        <button id="add_new_grn" class="btn btn-primary" data-toggle="modal"
                             data-target="#modal-default">
                             <i class="fa fa-plus"></i> &nbsp;&nbsp; New Delivery Note</button>
                     </h3>
 
-					
-				</div>
-				<div class="card-body">
-                <table class="table table-striped">
+
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -49,19 +49,19 @@
                                 <th>issue Date</th>
                                 <th>Delivery Date</th>
                                 <th>Item Qty</th>
-                                
+
                             </tr>
                         </thead>
                     </table>
-				</div>
-				
-			</div>
-			<!-- /.card -->
+                </div>
 
-		</section>
-		<!-- /.content -->
-	</div>
-	<!-- /.content-wrapper -->
+            </div>
+            <!-- /.card -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog modal-lg">
@@ -110,39 +110,39 @@
                         </div>
 
 
-                        
-                            
-                                <div class="form-group">
-                                    <li class="fa fa-calendar">&nbsp;&nbsp;</li>
-                                    <label for="input_username">Issue Date</label>
-                                    <br />
-                                    <input class="form-control input-rounded" name="deleivered_date"
-                                        id="deleivered_date" placeholder="" required="">
-                                </div>
 
-                            
 
-                                <div class="form-group">
-                                    <li class="fa fa-calendar">&nbsp;&nbsp;</li>
-                                    <label for="input_username">Delivery Date</label>
-                                    <br />
-                                    <input class="form-control input-rounded" name="deleivered_date"
-                                        id="deleivered_date" placeholder="" required="">
-                                </div>
+                        <div class="form-group">
+                            <li class="fa fa-calendar">&nbsp;&nbsp;</li>
+                            <label for="input_username">Issue Date</label>
+                            <br />
+                            <input class="form-control input-rounded" name="issue_date" id="issue_date"
+                                placeholder="" required="">
+                        </div>
 
-                            
-                        
+
+
+                        <div class="form-group">
+                            <li class="fa fa-calendar">&nbsp;&nbsp;</li>
+                            <label for="input_username">Delivery Date</label>
+                            <br />
+                            <input class="form-control input-rounded" name="deleivery_date" id="deleivery_date"
+                                placeholder="" required="">
+                        </div>
+
+
+
 
                         <div class="form-group">
                             <li class="fa fa-chair">&nbsp;&nbsp;</li>
                             <label for="input_username">Item QTY</label>
                             <br />
-                            <input class="form-control input-rounded" name="received_by" id="received_by" placeholder=""
+                            <input class="form-control input-rounded" name="item_qty" id="item_qty" placeholder=""
                                 required="">
                         </div>
 
 
-                       
+
 
 
                         <div class="modal-footer">
@@ -150,7 +150,7 @@
                                 data-dismiss="modal">Close</a>
                             <button type="submit" class="btn btn-sm btn-primary m-r-5 m-b-5 ">
                                 <i class="fa "></i>
-                                Save 
+                                Save
                             </button>
                         </div>
                 </form>

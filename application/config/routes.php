@@ -72,7 +72,7 @@ $route['view_sku'] = 'dashboard/view_sku';
 $route['save_item_inventory'] = 'dashboard/save_item_inventory';
 $route['suppliers'] = 'dashboard/suppliers';
 $route['GRN'] = 'dashboard/view_GRN';
-
+$route['delivery_note'] = 'dashboard/delivery_note';
 
 //ajax routes
 $route['get_item_details'] = 'dashboard/get_item_details';

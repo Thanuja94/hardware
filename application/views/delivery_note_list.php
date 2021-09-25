@@ -63,3 +63,97 @@
 	</div>
 	<!-- /.content-wrapper -->
 
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add New Delivery Note</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                </div>
+                <form id="form_data" method="post"
+                    action="<?php echo base_url() ?>index.php/user/user/add_new_sys_user_page">
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <label>Supplier ID</label>
+                                    <select class="form-control">
+                                        <option>SUP-032</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <li class="fa fa-user">&nbsp;&nbsp;</li>
+                                    <label for="input_username">Supplier Name</label>
+                                    <br />
+                                    <input class="form-control input-rounded" name="suppliername" id="input_username"
+                                        placeholder="Supllier Name" required="" type="text">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label>Order ID</label>
+                            <select class="form-control">
+                                <option>ORD-014</option>
+
+                            </select>
+                        </div>
+
+
+                        
+                            
+                                <div class="form-group">
+                                    <li class="fa fa-calendar">&nbsp;&nbsp;</li>
+                                    <label for="input_username">Issue Date</label>
+                                    <br />
+                                    <input class="form-control input-rounded" name="deleivered_date"
+                                        id="deleivered_date" placeholder="" required="">
+                                </div>
+
+                            
+
+                                <div class="form-group">
+                                    <li class="fa fa-calendar">&nbsp;&nbsp;</li>
+                                    <label for="input_username">Delivery Date</label>
+                                    <br />
+                                    <input class="form-control input-rounded" name="deleivered_date"
+                                        id="deleivered_date" placeholder="" required="">
+                                </div>
+
+                            
+                        
+
+                        <div class="form-group">
+                            <li class="fa fa-chair">&nbsp;&nbsp;</li>
+                            <label for="input_username">Item QTY</label>
+                            <br />
+                            <input class="form-control input-rounded" name="received_by" id="received_by" placeholder=""
+                                required="">
+                        </div>
+
+
+                       
+
+
+                        <div class="modal-footer">
+                            <a href="javascript:;" class="btn btn-sm btn-white m-r-5 m-b-5"
+                                data-dismiss="modal">Close</a>
+                            <button type="submit" class="btn btn-sm btn-primary m-r-5 m-b-5 ">
+                                <i class="fa "></i>
+                                Save 
+                            </button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>

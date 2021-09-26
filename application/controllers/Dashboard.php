@@ -497,4 +497,24 @@ class Dashboard extends CI_Controller
         $this->load->view('footer');
        // $this->load->view('js/item_createjs');
     }
+
+    public function add_new_order($msg = "", $alert_type = "alert-success")
+    {
+        $object['controller'] = $this;
+        $object['active_tab'] = "add_new_order";
+        $object['title'] = "New Order";
+        $this->load->view('header', $object);
+        $this->load->view('top_header');
+        $this->load->view('side_menu');
+
+        $data["skus"] = $this->mmodel->get_all('item_sku');
+        $data["unit_types"] = $this->mmodel->get_all('unit_types');
+        $data["suppliers"] = $this->mmodel->get_all('suppliers');
+        $data["msg"] = $msg;
+        $data["alert_type"] = $alert_type;
+
+        $this->load->view('add_new_order',$data);
+        $this->load->view('footer');
+       // $this->load->view('js/item_createjs');
+    }
 }

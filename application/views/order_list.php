@@ -31,10 +31,10 @@
 			<div class="card">
 				<div class="card-header">
 					<h3 class="card-title">Order List &nbsp; &nbsp;
-                        <button id="add_new_order" class="btn btn-primary" data-toggle="modal"
-                            data-target="#modal-default">
+                    <a href="<?php echo base_url()?>add_new_order"> 
+                        <button id="add_new_order" class="btn btn-primary">
                             <i class="fa fa-plus"></i> &nbsp;&nbsp; New Order</button>
-
+                    </a>
                     </h3>
 
 					

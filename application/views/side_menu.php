@@ -111,7 +111,7 @@ if (!isset($active_main_tab))
                 <li class="nav-item has-treeview ">
                     <a href="<?php echo base_url() ?>suppliers"
                        class="nav-link <?php if ($active_tab == 'suppliers') echo "active" ?>">
-                        <i class="nav-icon fa fa-list-alt"></i>
+                        <i class="nav-icon fa fa-user"></i>
                         <p>
                             Suppliers
                         </p>
@@ -190,6 +190,15 @@ if (!isset($active_main_tab))
                         <i class="nav-icon fa fa-list"></i>
                         <p>
                             Sales Transaction
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview ">
+                    <a href="<?php echo base_url() ?>dashboard/order_list"
+                       class="nav-link <?php if ($active_tab == 'order_list') echo "active" ?>">
+                        <i class="nav-icon fa fa-list"></i>
+                        <p>
+                            Orders
                         </p>
                     </a>
                 </li>

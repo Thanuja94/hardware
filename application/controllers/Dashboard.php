@@ -299,6 +299,7 @@ class Dashboard extends CI_Controller
     {
         $object['controller'] = $this;
         $object['active_tab'] = "salesreport";
+        $object['active_main_tab'] = "salesreport";
         $object['title'] = "Sales Report";
         $this->load->view('header', $object);
         $this->load->view('top_header');
@@ -516,5 +517,21 @@ class Dashboard extends CI_Controller
         $this->load->view('add_new_order',$data);
         $this->load->view('footer');
        // $this->load->view('js/item_createjs');
+    }
+
+
+    public function purchase_order_report()
+    {
+        $object['controller'] = $this;
+        $object['active_tab'] = "purchase_order_report";
+        $object['title'] = "Purchase Order Report";
+        $this->load->view('header', $object);
+        $this->load->view('top_header');
+        $this->load->view('side_menu');
+
+        $data["inventory_data"] = $this->mmodel->get_inventory_report();
+        $this->load->view('purchase_order_report',$data);
+        $this->load->view('footer');
+        $this->load->view('js/inventoryreportjs');
     }
 }

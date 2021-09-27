@@ -13,7 +13,7 @@
                     <div class="col-sm-4">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Inventory Report</li>
+                            <li class="breadcrumb-item active">Purchase Order Report</li>
                         </ol>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
             <div class="col-sm-4">
                     </div>
                 <div class="col-sm-4" style="text-align:center;">
-                    <h5>Inventory Report</h5>
+                    <h5>Purchase Order Report</h5>
                     </div>
                     <div class="col-sm-4">
                     </div>
@@ -44,11 +44,12 @@
                   <th style="text-aligh:left;">Item Code</th>
                   <th style="text-aligh:left;">Product Name</th>
                   <th style="text-aligh:left;">Item Group</th>
-                  <th style="text-aligh:left;">SKU</th>
-                  <th style="text-aligh:left;">On Hand Qty</th>
-                  <th style="text-aligh:left;">Reorder Level</th>
                   <th style="text-aligh:left;">Unit Type</th>
                   <th style="text-aligh:left;">Unit Price (Rs.)</th>
+                  <th style="text-aligh:left;">Purchased Qty</th>
+                  <th style="text-aligh:left;">Supplier</th>
+                  <th style="text-aligh:left;">Total Price (Rs.)</th>
+                  
                 </tr>
                 </thead>
                 <tbody>
@@ -57,11 +58,12 @@
                         <td><?php echo $sales->item_code?></td>
                         <td><?php echo $sales->item_name?></td>
                         <td><?php echo $sales->sku_name?></td>
-                        <td><?php echo $sales->sku_code?></td>
-                        <td><?php echo $sales->qty?></td>
-                        <td><?php echo $sales->re_order_level?></td>
                         <td><?php echo $sales->unit_type?></td>
                         <td><?php echo number_format($sales->selling_price,2,'.',',')?></td>
+                        <td><?php echo $sales->qty?></td>
+                        <td><?php echo $sales->qty?></td>
+                        <td><?php echo number_format($sales->selling_price,2,'.',',')?></td>
+                       
                     </tr>
                 <?php } ?>
                 

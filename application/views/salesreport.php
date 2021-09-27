@@ -6,7 +6,7 @@
                 <div class="row mb-2">
                 
                     <div class="col-sm-8">
-                        <h3 class="m-0 text-dark" style="text-align:right;">Kithmi Holding Hardware Stores</h3>
+                        <h3 class="m-0 text-dark" style="text-align:right;">Kethmi Holding Hardware Stores</h3>
                         <h5 class="m-0 text-dark" style="text-align:right;">Building No, Street Name, City, Street,Zip</h5>
                         <h5 class="m-0 text-dark" style="text-align:right;">Contact No: 011 255 6666 / 077 5677 722</h5>
                     </div>

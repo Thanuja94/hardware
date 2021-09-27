@@ -77,6 +77,7 @@ $route['supplier_invoice'] = 'dashboard/supplier_invoice';
 $route['add_new_sup_invoice'] = 'dashboard/add_new_sup_invoice';
 $route['order_list'] = 'dashboard/order_list';
 $route['add_new_order'] = 'dashboard/add_new_order';
+$route['purchase_order_report'] = 'dashboard/purchase_order_report';
 
 //ajax routes
 $route['get_item_details'] = 'dashboard/get_item_details';

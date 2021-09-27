@@ -202,9 +202,9 @@ if (!isset($active_main_tab))
                         </p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview <?php if ($active_main_tab == 'salesreport' || $active_tab == 'inventoryreport') echo "menu-open" ?> ">
+                <li class="nav-item has-treeview <?php if ($active_main_tab == 'salesreport' || $active_tab == 'inventoryreport' || $active_tab == 'purchase_order_report') echo "menu-open" ?> ">
                     <a href="#"
-                       class="nav-link <?php if ($active_main_tab == 'salesreport' || $active_tab == 'inventoryreport') echo "active" ?>">
+                       class="nav-link <?php if ($active_main_tab == 'salesreport' || $active_tab == 'inventoryreport' || $active_tab == 'purchase_order_report') echo "active" ?>">
                         <i class="nav-icon fa fa-file-alt"></i>
                         <p>
                             Reports
@@ -230,7 +230,15 @@ if (!isset($active_main_tab))
                                 </p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="<?php echo base_url() ?>dashboard/purchase_order_report"
+                            class="nav-link <?php if ($active_tab == 'purchase_order_report') echo "active" ?>">
+                                <i class="nav-icon fa fa-file-alt"></i>
+                                <p>
+                                    Purchase Order Report
+                                </p>
+                            </a>
+                        </li>
 
                     </ul>
                 </li>

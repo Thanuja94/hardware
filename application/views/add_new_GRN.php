@@ -12,12 +12,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add New Supplier Invoice</h1>
+                        <h1>Add New GRN</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">New Supplier Invoice</li>
+                            <li class="breadcrumb-item active">New GRN</li>
                         </ol>
                     </div>
                 </div>
@@ -55,10 +55,10 @@
 
                             <div class="col-md-4">
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-4 col-form-label">Invoice Date</label>
+                                    <label for="inputEmail3" class="col-md-4 col-form-label">Delivered Date</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="inv_date" placeholder=""
-                                            name="inv_date">
+                                        <input type="text" class="form-control" id="delivered_date" placeholder=""
+                                            name="delivered_date">
                                     </div>
                                 </div>
                             </div>
@@ -68,52 +68,35 @@
 
                 <br>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <!-- text input -->
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-2 col-form-label"> Comments</label>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
 
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-4 col-form-label">Gross Total</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="inv_date" placeholder=""
-                                            name="inv_date">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-4 col-form-label">Discount</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="inv_date" placeholder=""
-                                            name="inv_date">
-                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-4 col-form-label">Received By</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="sup_name" placeholder=""
+                                        name="sup_name">
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
 
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-4 col-form-label">Net Total</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="inv_date" placeholder=""
-                                            name="inv_date">
-                                    </div>
-                                </div>
-                            </div>
 
 
-                        </div>
-                    </div>
-                </div>
 
                 <br>
                 <div class="row">
@@ -139,17 +122,17 @@
                             </div>
 
                             <div class="col-md-3">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-4 col-form-label"> Stock ID</label>
-                                    <div class="col-md-8">
-                                        <select class="form-control">
-                                            <option>STK-033</option>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-4 col-form-label"> Stock ID</label>
+                                <div class="col-md-8">
+                                    <select class="form-control">
+                                        <option>STK-033</option>
 
-                                        </select>
-                                    </div>
+                                    </select>
                                 </div>
                             </div>
-
+                            </div>
+                           
                             <div class="col-md-1">
                                 <div class="form-group row">
                                     <div class="col-md-12">
@@ -160,6 +143,10 @@
 
                         </div>
                     </div>
+
+                </div>
+
+                <div class="row">
                     <div class="col-md-8">
                         <div class="card-body form-group col-sm-12">
                             <table id="example1" class="table table-bordered table-striped">
@@ -169,9 +156,8 @@
                                         <th>Item Code</th>
                                         <th>Item Name</th>
                                         <th>Item Brand</th>
-                                        <th>Item QTY</th>
-                                        <th>Unit Price (Rs)</th>
-                                        <th>Total Price (Rs)</th>
+                                        <th>Deliveredd QTY</th>
+
 
                                     </tr>
                                 </thead>
@@ -182,8 +168,6 @@
                         </div>
                     </div>
 
-                    <br>
-                    <br>
 
                     <div class="col-md-4">
                         <div class="card">
@@ -193,8 +177,8 @@
                                 <div class="card-body">
 
                                     <button type="submit" id="btn_save_tans" class="btn btn-info full-width">Save
-                                        Invoice</button>
-                                    <a href="<?php echo base_url()?>supplier_invoice" type="button"
+                                        GRN</button>
+                                    <a href="<?php echo base_url()?>GRN" type="button"
                                         class="btn btn-default float-right">Cancel</a>
 
 
@@ -206,7 +190,6 @@
                         </div>
                     </div>
                 </div>
-
 
 
 

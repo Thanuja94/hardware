@@ -31,9 +31,15 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">GRN List &nbsp; &nbsp;
-                        <button id="add_new_grn" class="btn btn-primary" data-toggle="modal"
+                    <a href="<?php echo base_url()?>add_new_grn"> 
+                    <button id="add_new_grn" class="btn btn-primary"  >
+                       
+                       <i class="fa fa-plus"></i> &nbsp;&nbsp; New GRN</button>
+                    </a>
+
+                        <!-- <button id="add_new_grn" class="btn btn-primary" data-toggle="modal"
                             data-target="#modal-default">
-                            <i class="fa fa-plus"></i> &nbsp;&nbsp; New GRN</button>
+                            <i class="fa fa-plus"></i> &nbsp;&nbsp; New GRN</button> -->
                     </h3>
 
 

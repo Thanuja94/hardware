@@ -64,7 +64,7 @@
 
                                     <div class="form-group row">
                                         <div class="col-sm-2"></div>
-                                        <label for="lblskucode" class="col-sm-4 col-form-label">SKU Code</label>
+                                        <label for="lblskucode" class="col-sm-4 col-form-label">Item Brand</label>
                                         <div class="col-sm-4">
                                             <select class="form-control" id="sku" name="sku">
                                                 <?php foreach ($skus->result() as $skus) { ?>
@@ -106,7 +106,7 @@
                                     </div>
 
 
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <div class="col-sm-2"></div>
                                         <label for="lblItemName" class="col-sm-4 col-form-label">Re-Order level</label>
                                         <div class="col-sm-4">
@@ -114,7 +114,7 @@
                                                    placeholder="Re order Level" name="re_order_level" required>
                                         </div>
                                         <div class="col-sm-2"></div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="form-group row">
                                         <div class="col-sm-2"></div>

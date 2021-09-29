@@ -66,9 +66,37 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-4">
                                     <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-4 col-form-label">Address</label>
+                                        <label for="inputEmail3" class="col-md-4 col-form-label">Tel No.</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="cus_tel" placeholder=""
+                                                   name="cus_tel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!-- text input -->
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-4 col-form-label"> Customer Address 1</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="cus_name" placeholder=""
+                                                   name="cus_name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-4 col-form-label">Customer Address 2</label>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control" id="cus_address" placeholder=""
                                                    name="cus_address">
@@ -77,7 +105,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-4 col-form-label">Tel No.</label>
+                                        <label for="inputEmail3" class="col-md-4 col-form-label">Customer Address 3</label>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control" id="cus_tel" placeholder=""
                                                    name="cus_tel">

@@ -80,7 +80,7 @@
                                         <th>Item Code</th>
                                         <th>Item Name</th>
                                         <th>Supplier</th>
-                                        <th>SKU Code</th>
+                                        <th>Item Group</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -103,7 +103,7 @@
                                         <th>Item Code</th>
                                         <th>Item Name</th>
                                         <th>Supplier</th>
-                                        <th>SKU Code</th>
+                                        <th>Item Group</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>

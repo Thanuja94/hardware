@@ -56,7 +56,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-6 col-form-label">SKU Code</label>
+                                        <label for="inputEmail3" class="col-sm-6 col-form-label">Item Group</label>
                                         <div class="col-sm-6">
                                             <select class="form-control" id="sku_code" name="sku_code">
                                                 <?php foreach ($skus->result() as $sku) { ?>

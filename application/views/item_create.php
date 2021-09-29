@@ -64,7 +64,7 @@
 
                                     <div class="form-group row">
                                         <div class="col-sm-2"></div>
-                                        <label for="lblskucode" class="col-sm-4 col-form-label">Item Brand</label>
+                                        <label for="lblskucode" class="col-sm-4 col-form-label">Item Group</label>
                                         <div class="col-sm-4">
                                             <select class="form-control" id="sku" name="sku">
                                                 <?php foreach ($skus->result() as $skus) { ?>

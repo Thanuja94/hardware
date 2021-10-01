@@ -85,6 +85,7 @@
                             <thead>
                                 <tr>
                                     <th>Item Code</th>
+                                    <th>Stock ID</th>
                                     <th>Item Name</th>
                                     <th>Item Group </th>
                                     <th>Customer</th>
@@ -99,6 +100,7 @@
 
                                 <?php foreach ($sales_history_table->result() as $item) { ?>
                                     <tr>
+                                        <td><?php echo $item->item_code ?></td>
                                         <td><?php echo $item->item_code ?></td>
                                         <td><?php echo $item->item_name ?></td>
                                         <td><?php echo $item->sku_name ?></td>

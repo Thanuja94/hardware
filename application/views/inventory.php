@@ -89,6 +89,7 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
+                                        <th>Stock ID</th>
                                         <th>Item Code</th>
                                         <th>Product Name</th>
                                         <th>Item Group(s)</th>
@@ -105,6 +106,7 @@
                                         ?>
                                         <tr>
                                         <td><?php echo $row->item_code; ?></td>
+                                        <td><?php echo $row->item_code; ?></td>
                                         <td><?php echo $row->item_name; ?></td>
                                         <td><?php echo $row->sku_name; ?></td>
                                         <!-- <td><?php echo $row->sku_code; ?></td> -->
@@ -118,6 +120,7 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
+                                        <th>Stock ID</th>
                                         <th>Item Code</th>
                                         <th>Product Name</th>
                                         <th>Item Group(s)</th>

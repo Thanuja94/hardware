@@ -80,5 +80,8 @@ $route['add_new_order'] = 'dashboard/add_new_order';
 $route['purchase_order_report'] = 'dashboard/purchase_order_report';
 $route['add_new_grn'] = 'dashboard/add_new_grn';
 
+// need to remove
+$route['edit_supplier'] = 'dashboard/edit_supplier';
+
 //ajax routes
 $route['get_item_details'] = 'dashboard/get_item_details';

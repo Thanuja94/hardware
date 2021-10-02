@@ -156,7 +156,7 @@
                                         <th>Item Code</th>
                                         <th>Item Name</th>
                                         <th>Item Brand</th>
-                                        <th>Deliveredd QTY</th>
+                                        <th>Delivered QTY</th>
 
 
                                     </tr>

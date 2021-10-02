@@ -79,6 +79,7 @@ $route['order_list'] = 'dashboard/order_list';
 $route['add_new_order'] = 'dashboard/add_new_order';
 $route['purchase_order_report'] = 'dashboard/purchase_order_report';
 $route['add_new_grn'] = 'dashboard/add_new_grn';
+$route['add_stock'] = 'dashboard/add_stock';
 
 // need to remove
 $route['edit_supplier'] = 'dashboard/edit_supplier';

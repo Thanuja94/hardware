@@ -136,10 +136,10 @@ if (!isset($active_main_tab))
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url() ?>itemupdate"
-                               class="nav-link <?php if ($active_tab == 'item_update') echo "active" ?>">
+                            <a href="<?php echo base_url() ?>add_stock"
+                               class="nav-link <?php if ($active_tab == 'add_stock') echo "active" ?>">
                                 <p>
-                                    Add Items
+                                    Add Stock
                                 </p>
                             </a>
                         </li>
@@ -196,7 +196,7 @@ if (!isset($active_main_tab))
                 <li class="nav-item has-treeview ">
                     <a href="<?php echo base_url() ?>dashboard/order_list"
                        class="nav-link <?php if ($active_tab == 'order_list') echo "active" ?>">
-                        <i class="nav-icon fa fa-list"></i>
+                        <i class="nav-icon fa fa-briefcase"></i>
                         <p>
                             Orders
                         </p>
@@ -248,7 +248,7 @@ if (!isset($active_main_tab))
                 <li class="nav-item has-treeview ">
                     <a href="<?php echo base_url() ?>GRN"
                        class="nav-link <?php if ($active_tab == 'GRN') echo "active" ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-file"></i>
                         <p>
                             GRN
                         </p>
@@ -257,7 +257,7 @@ if (!isset($active_main_tab))
                 <li class="nav-item has-treeview ">
                     <a href="<?php echo base_url() ?>delivery_note"
                        class="nav-link <?php if ($active_tab == 'delivetynote') echo "active" ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-envelope-open"></i>
                         <p>
                             Delivery Note
                         </p>
@@ -266,7 +266,7 @@ if (!isset($active_main_tab))
                 <li class="nav-item has-treeview ">
                     <a href="<?php echo base_url() ?>supplier_invoice"
                        class="nav-link <?php if ($active_tab == 'supplier_invoice') echo "active" ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fa fa-credit-card"></i>
                         <p>
                             Supplier Invoice
                         </p>

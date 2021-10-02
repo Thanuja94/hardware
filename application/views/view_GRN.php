@@ -49,6 +49,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>GRN ID</th>
                                 <th>Stock ID</th>
                                 <th>Delivered Date</th>
                                 <th>Delivered QTY</th>

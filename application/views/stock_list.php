@@ -60,7 +60,7 @@
 
                     </div>
                     <div class="col-sm-2">
-                        <a href="<?php echo base_url()?>item_create" class="btn btn-dark" >New Stock</a>
+                    <button type="submit" class="btn btn-dark">Add Stock</button>
                     </div>
 
 

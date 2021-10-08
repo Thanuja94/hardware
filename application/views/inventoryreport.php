@@ -45,7 +45,6 @@
                                             <th style="text-aligh:left;">Item Code</th>
                                             <th style="text-aligh:left;">Product Name</th>
                                             <th style="text-aligh:left;">Item Group</th>
-                                            <th style="text-aligh:left;">SKU</th>
                                             <th style="text-aligh:left;">On Hand Qty</th>
                                             <th style="text-aligh:left;">Reorder Level</th>
                                             <th style="text-aligh:left;">Unit Type</th>
@@ -57,8 +56,7 @@
                                         <tr>
                                             <td><?php echo $sales->item_code?></td>
                                             <td><?php echo $sales->item_name?></td>
-                                            <td><?php echo $sales->sku_name?></td>
-                                            <td><?php echo $sales->sku_code?></td>
+                                            <td><?php echo $sales->sku_name?></td>                                           
                                             <td><?php echo $sales->qty?></td>
                                             <td><?php echo $sales->re_order_level?></td>
                                             <td><?php echo $sales->unit_type?></td>

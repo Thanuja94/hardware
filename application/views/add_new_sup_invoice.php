@@ -118,9 +118,21 @@
                 <br>
                 <div class="row">
 
-                    <label for="" class="col-md-1 col-form-label">Add Items</label>
+                    <!-- <label for="" class="col-md-1 col-form-label">Add Items</label> -->
                     <div class="col-md-10">
                         <div class="row">
+
+                            <div class="col-md-3">
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-4 col-form-label"> Stock ID</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control">
+                                            <option>STK-033</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-4">
                                 <div class="form-group row">
                                     <div class="col-md-12">
@@ -138,17 +150,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-4 col-form-label"> Stock ID</label>
-                                    <div class="col-md-8">
-                                        <select class="form-control">
-                                            <option>STK-033</option>
 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="col-md-1">
                                 <div class="form-group row">

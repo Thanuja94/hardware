@@ -71,6 +71,7 @@ $route['save_sku'] = 'dashboard/save_sku';
 $route['view_sku'] = 'dashboard/view_sku';
 $route['save_item_inventory'] = 'dashboard/save_item_inventory';
 $route['suppliers'] = 'dashboard/suppliers';
+$route['save_suppliers'] = 'dashboard/save_suppliers';
 $route['GRN'] = 'dashboard/view_GRN';
 $route['delivery_note'] = 'dashboard/delivery_note';
 $route['supplier_invoice'] = 'dashboard/supplier_invoice';
@@ -80,6 +81,7 @@ $route['add_new_order'] = 'dashboard/add_new_order';
 $route['purchase_order_report'] = 'dashboard/purchase_order_report';
 $route['add_new_grn'] = 'dashboard/add_new_grn';
 $route['add_stock'] = 'dashboard/add_stock';
+
 
 // need to remove
 $route['edit_supplier'] = 'dashboard/edit_supplier';

@@ -74,7 +74,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
             </div>
             <form id="form_data" method="post"
-                action="<?php echo base_url() ?>index.php/user/user/add_new_sys_user_page">
+                action="<?php echo base_url() ?>save_suppliers">
                 <div class="modal-body">
 
 
@@ -82,42 +82,42 @@
                         <li class="fa fa-user">&nbsp;&nbsp;</li>
                         <label for="input_username">Supplier Name</label>
                         <br />
-                        <input class="form-control input-rounded" name="suppliername" id="input_username"
+                        <input class="form-control input-rounded" name="supplier_name" id="supplier_name"
                             placeholder="Supllier Name" required="" type="text">
                     </div>
 
                     <div class="form-group">
                         <li class="fa fa-home">&nbsp;&nbsp;</li>
                         <label>Supplier Address Line 1</label>
-                        <input class="form-control input-rounded" name="adderss1" placeholder="supplier address line 1"
+                        <input class="form-control input-rounded" name="adderss1" id="adderss1" placeholder="supplier address line 1"
                             required="" type="text">
                     </div>
 
                     <div class="form-group">
                         <li class="fa fa-home">&nbsp;&nbsp;</li>
                         <label>Supplier Address Line 2</label>
-                        <input class="form-control input-rounded" name="adderss2" placeholder="supplier address line 2"
+                        <input class="form-control input-rounded" name="adderss2" id="adderss2" placeholder="supplier address line 2"
                             required="" type="text">
                     </div>
 
                     <div class="form-group">
                         <li class="fa fa-home">&nbsp;&nbsp;</li>
                         <label>Supplier Address Line 3</label>
-                        <input class="form-control input-rounded" name="adderss3" placeholder="supplier address line 3"
+                        <input class="form-control input-rounded" name="adderss3" id="adderss3" placeholder="supplier address line_3"
                             required="" type="text">
                     </div>
 
                     <div class="form-group">
                         <li class="fa fa-envelope">&nbsp;&nbsp;</li>
                         <label>Email</label>
-                        <input class="form-control input-rounded" name="email" placeholder="Email" required=""
+                        <input class="form-control input-rounded" name="email" id="email" placeholder="Email" required=""
                             type="email">
                     </div>
 
                     <div class="form-group">
                         <li class="fa fa-phone">&nbsp;&nbsp;</li>
                         <label>Supplier Contact</label>
-                        <input class="form-control input-rounded" name="contact number" placeholder="contact number" required=""
+                        <input class="form-control input-rounded" name="contact_number" id="contact_number" placeholder="contact number" required=""
                             type="text">
                     </div>
 

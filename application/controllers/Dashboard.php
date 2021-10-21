@@ -237,6 +237,24 @@ class Dashboard extends CI_Controller
         }
     }
 
+    public function save_suppliers($msg = "", $alert_type = "alert-success"){
+
+        $data['supplier_name'] = $this->input->get_post('supplier_name');
+        $data['address_line_1'] = $this->input->get_post('adderss1');
+        $data['address_line_2'] = $this->input->get_post('adderss2');
+        $data['address_line_3'] = $this->input->get_post('adderss3');
+        $data['sup_tel_no'] = $this->input->get_post('contact_number');
+        $data['supplier_email'] = $this->input->get_post('email');
+        $data['supplier_id'] = $this->mmodel->generate_supplier_number();
+        // $data['last_modified_at'] = date('Y-m-d H:i:s');
+        // $data['last_modified_by'] = $this->session->userdata('name');
+
+        if ($this->mmodel->insert('suppliers', $data)) {
+            //$this->item_create('Item Added Successfully');
+        } else {
+           // $this->item_create('Item failed to Insert', 'alert-danger');
+        }
+    }
     public function invoicelist()
     {
         $object['controller'] = $this;

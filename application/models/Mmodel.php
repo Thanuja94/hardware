@@ -237,7 +237,7 @@ class MModel extends CI_Model
         $supplier_number = "";
 
         $this->db->select("id");
-        $this->db->from("supplier");
+        $this->db->from("suppliers");
         $this->db->limit(1);
         $this->db->order_by('id', "DESC");
         $result = $this->db->get();

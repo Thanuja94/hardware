@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <li class="fa fa-user">&nbsp;&nbsp;</li>
                                     <label>Supplier Name</label>
-                                    <input class="form-control input-rounded" name="supplier name" placeholder="last name"
+                                    <input class="form-control input-rounded" name="supplier_name" placeholder="last name"
                                            required="" type="text">
                                 </div>
 
@@ -37,22 +37,22 @@
                                 <div class="form-group">
                                     <li class="fa fa-home">&nbsp;&nbsp;</li>
                                     <label>Supplier Address Line 1</label>
-                                    <input class="form-control input-rounded" name="supplier adderss line 1" placeholder="Email"
-                                        required="" type="email">
+                                    <input class="form-control input-rounded" name="supplier_adderss_line_1" placeholder="Email"
+                                        required="" type="text">
                                 </div>
 
                                 <div class="form-group">
                                     <li class="fa fa-home">&nbsp;&nbsp;</li>
                                     <label>Supplier Address Line 2</label>
-                                    <input class="form-control input-rounded" name="supplier adderss line 2" placeholder="Email"
-                                        required="" type="email">
+                                    <input class="form-control input-rounded" name="supplier_adderss_line_2" placeholder="Email"
+                                        required="" type="text">
                                 </div>
                                
                                 <div class="form-group">
                                     <li class="fa fa-home">&nbsp;&nbsp;</li>
                                     <label>Supplier Address Line 3</label>
-                                    <input class="form-control input-rounded" name="supplier adderss line 3" placeholder="Email"
-                                        required="" type="email">
+                                    <input class="form-control input-rounded" name="supplier_adderss_line_3" placeholder="Email"
+                                        required="" type="text">
                                 </div>
 
                                 <div class="form-group">
@@ -65,8 +65,8 @@
                                 <div class="form-group">
                                     <li class="fa fa-phone">&nbsp;&nbsp;</li>
                                     <label>Supplier Contact</label>
-                                    <input class="form-control input-rounded" name="contact number" placeholder="Email"
-                                        required="" type="email">
+                                    <input class="form-control input-rounded" name="contact_number" placeholder="Email"
+                                        required="" type="text">
                                 </div>
 
                                 

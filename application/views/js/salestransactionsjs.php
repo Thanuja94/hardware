@@ -64,8 +64,10 @@
 
                 $invNo: $("#inv_no"),
                 $invDate: $("#inv_date"),
-                $cusName: $("#cus_name"),
-                $cusAddress: $("#cus_address"),
+                $cusName: $("#customer_name"),
+                $cusAddress1: $("#address_line_1"),
+                $cusAddress2: $("#address_line_2"),
+                $cusAddress3: $("#address_line_3"),
                 $cusTel: $("#cus_tel"),
 
                 $grossTotal: 0,
@@ -197,8 +199,10 @@
                         {
                             invoice_number: this.$invNo.val(),
                             inv_date: this.$invDate.val(),
-                            cus_name: this.$cusName.val(),
-                            cus_address: this.$cusAddress.val(),
+                            customer_name: this.$cusName.val(),
+                            address_line_1: this.$cusAddress1.val(),
+                            address_line_2: this.$cusAddress2.val(),
+                            address_line_3: this.$cusAddress3.val(),
                             cus_tel: this.$cusTel.val(),
                             gross_total: this.$txt_gross_total.val(),
                             total_qty: this.$qtyTotal,

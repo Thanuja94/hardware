@@ -83,7 +83,7 @@
                                         <div class="col-sm-4">
                                             <select class="form-control" id="supplier" name="supplier">
                                                 <?php foreach ($suppliers->result() as $supplier) { ?>
-                                                    <option value="<?php echo $supplier->id ?>"><?php echo $supplier->supplier_code.'-'.$supplier->supplier_name ?>
+                                                    <option value="<?php echo $supplier->id ?>"><?php echo $supplier->supplier_id.'-'.$supplier->supplier_name ?>
                                                     </option>
                                                 <?php } ?>
                                             </select>

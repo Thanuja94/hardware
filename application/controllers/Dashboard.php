@@ -182,7 +182,14 @@ class Dashboard extends CI_Controller
 
         $trans_id = $this->input->get("id");
 
-        $data["customer_details"] = $this->mmodel->get_all_by_id("invoice_header", $trans_id);
+        // $data["customer_details"] = $this->mmodel->get_customer_by_id("customer", $trans_id);
+        // $data["invoice_header_details"] = $this->mmodel->get_all_by_id("invoice", $trans_id);
+        // $data["invoice_details"] = $this->mmodel->get_invoice_details($trans_id);
+
+
+        $invoice_header_details = $this->mmodel->get_all_by_id("invoice", $trans_id);
+        $data["customer_details"] = $this->mmodel->get_customer_by_id("customer", $invoice_header_details->row()->cus_id);
+        $data["invoice_header_details"] = $invoice_header_details;
         $data["invoice_details"] = $this->mmodel->get_invoice_details($trans_id);
 
         $this->load->view('header', $object);
@@ -217,7 +224,7 @@ class Dashboard extends CI_Controller
         $data['item_sku_id'] = $this->input->get_post('sku');
         $data['supplier_id'] = $this->input->get_post('supplier');
         $data['unit_type'] = $this->input->get_post('unit_type');
-        $data['re_order_level'] = $this->input->get_post('re_order_level');
+        // $data['re_order_level'] = $this->input->get_post('re_order_level');
         $data['status'] = $this->input->get_post('status');
         $data['item_code'] = $this->mmodel->generate_item_number();
         $data['last_modified_at'] = date('Y-m-d H:i:s');
@@ -328,20 +335,22 @@ class Dashboard extends CI_Controller
 
     public function save_transaction()
     {
-        $header['invoice_number'] = $this->input->post('invoice_number');
+        $header['invoice_id'] = $this->input->post('invoice_number');
         $header['invoice_date'] = $this->input->post('inv_date');
-        $header['customer_name'] = $this->input->post('cus_name');
-        $header['address'] = $this->input->post('cus_address');
-        $header['telephone'] = $this->input->post('cus_tel');
         $header['gross_total'] = $this->input->post('gross_total');
         $header['qty_total'] = $this->input->post('total_qty');
-        $header['tax'] = $this->input->post('tax_amt');
-        $header['discount'] = $this->input->post('total_discount');
+        $header['tot_discount'] = $this->input->post('total_discount');
         $header['net_total'] = $this->input->post('net_total');
         $header['net_total'] = $this->input->post('net_total');
         $header['net_total'] = $this->input->post('net_total');
         $header['last_modified_at'] = date('Y-m-d H:i:s');
         $header['last_modified_by'] = $this->session->userdata('name');
+
+        $customer['customer_name'] = $this->input->post('customer_name');
+        $customer['address_line_1'] = $this->input->post('address_line_1');
+        $customer['address_line_2'] = $this->input->post('address_line_2');
+        $customer['address_line_3'] = $this->input->post('address_line_3');
+        $customer['cus_tel'] = $this->input->post('cus_tel');
 
         $item_list = json_decode($this->input->post('item_list'));
 
@@ -351,14 +360,14 @@ class Dashboard extends CI_Controller
             $line['item_code'] = $item[0];
             $line['unit_price'] = $item[1];
             $line['discount'] = $item[2];
-            $line['qty'] = $item[3];
+            $line['item_qty'] = $item[3];
             $line['total_price'] = $item[4];
             $line_records[] = $line;
         }
 
         $data['status'] = 0;
 
-        $trans_id = $this->mmodel->save_transaction($header, $line_records);
+        $trans_id = $this->mmodel->save_transaction($header, $line_records,$customer);
 
         if ($trans_id) {
             $data['status'] = 1;

@@ -64,11 +64,22 @@ class MModel extends CI_Model
         return $result;
     }
 
+    public function get_customer_by_id($table, $id)
+    {
+        $result = $this->db
+            ->select("*")
+            ->from($table)
+            ->where('cus_id', $id)
+            ->get();
+
+        return $result;
+    }
+
     public function get_invoice_details($id)
     {
         $result = $this->db->query(
             "SELECT
-                ih.invoice_number, 
+                ih.invoice_id, 
                 ih.invoice_date, 
                 il.item_code, 
                 il.unit_price, 
@@ -77,12 +88,16 @@ class MModel extends CI_Model
                 sku.sku_code, 
                 sku.sku_name, 
                 il.discount,
-                il.qty,
+                il.item_qty,
                 il.total_price
             FROM
-                invoice_header AS ih
+                customer 
+                INNER JOIN 
+                invoice AS ih
+                ON
+                customer.cus_id = ih.cus_id
                 INNER JOIN
-                invoice_lines AS il
+                item_include_on_invoice AS il
                 ON 
                     ih.id = il.invoice_id
                 INNER JOIN
@@ -105,11 +120,11 @@ class MModel extends CI_Model
                         item_master.item_code, 
                         item_master.item_name
                     FROM
-                        inventory
+                        stock
                         INNER JOIN
                         item_master
                         ON 
-                            inventory.item_id = item_master.id");
+                            stock.item_id = item_master.id");
 
         return $result;
     }
@@ -183,7 +198,7 @@ class MModel extends CI_Model
                         ON 
                             im.item_sku_id = sku.id
                         INNER JOIN
-                        inventory AS i
+                        stock AS i
                         ON 
                             im.id = i.item_id AND
                             sku.id = i.item_sku_id
@@ -196,7 +211,7 @@ class MModel extends CI_Model
         $invoice_number = "";
 
         $this->db->select("id");
-        $this->db->from("invoice_header");
+        $this->db->from("invoice");
         $this->db->limit(1);
         $this->db->order_by('id', "DESC");
         $result = $this->db->get();
@@ -216,6 +231,31 @@ class MModel extends CI_Model
         return $invoice_number;
     }
 
+
+    public function generate_supplier_number()
+    {
+        $supplier_number = "";
+
+        $this->db->select("id");
+        $this->db->from("supplier");
+        $this->db->limit(1);
+        $this->db->order_by('id', "DESC");
+        $result = $this->db->get();
+        if ($result->num_rows() == 0)
+            $rowcount = 0;
+        else {
+            $rowcount = $result->row()->id;
+        }
+        $rowcount++;
+        if ($rowcount < 10) $supplier_number = "SUPP0000" . $rowcount;
+        else if ($rowcount < 100) $supplier_number = "SUPP000" . $rowcount;
+        else if ($rowcount < 1000) $supplier_number = "SUPP00" . $rowcount;
+        else if ($rowcount < 10000) $supplier_number = "SUPP0" . $rowcount;
+        else $supplier_number = "SUPP" . $supplier_number;
+
+
+        return $supplier_number;
+    }
     public function generate_item_number()
     {
         $invoice_number = "";
@@ -240,19 +280,29 @@ class MModel extends CI_Model
         return $invoice_number;
     }
 
-    public function save_transaction($header, $line_records)
+    public function save_transaction($header, $line_records,$customer)
     {
 
-        if ($this->db->insert('invoice_header', $header)) {
-            $invoice_id = $this->db->insert_id();
+        if($this->db->insert('customer', $customer)){
+            $customer_id = $this->db->insert_id();
+            $header['cus_id'] = $customer_id;
 
-            foreach ($line_records as $lines) {
-                $lines['invoice_id'] = $invoice_id;
-                $this->db->insert('invoice_lines', $lines);
-            }
-            return $invoice_id;
+            if ($this->db->insert('invoice', $header)) {
+                $invoice_id = $this->db->insert_id();
+    
+                foreach ($line_records as $lines) {
+                    $lines['invoice_id'] = $invoice_id;
+                    $this->db->insert('item_include_on_invoice', $lines);
+                }
+                return $invoice_id;
+                
+                
+            }   
         }
+       
+       
         return false;
+        
     }
 
     public function get_sku_list($param)
@@ -274,23 +324,23 @@ class MModel extends CI_Model
         item_master.item_code, 
         item_master.item_name, 
         item_sku.sku_name, 
-        invoice_header.customer_name, 
-        invoice_header.invoice_date, 
-        invoice_lines.unit_price, 
-        invoice_lines.qty, 
+        
+        invoice.invoice_date, 
+        item_include_on_invoice.unit_price, 
+        item_include_on_invoice.item_qty, 
         item_master.unit_type, 
-        invoice_lines.total_price, 
-        invoice_lines.discount
+        item_include_on_invoice.total_price, 
+        item_include_on_invoice.discount
     FROM
-        invoice_header
+        invoice
         INNER JOIN
-        invoice_lines
+        item_include_on_invoice
         ON 
-            invoice_header.id = invoice_lines.invoice_id
+            invoice.id = item_include_on_invoice.invoice_id
         INNER JOIN
         item_master
         ON 
-            invoice_lines.item_code = item_master.item_code
+        item_include_on_invoice.item_code = item_master.item_code
         INNER JOIN
         item_sku
         ON 
@@ -298,9 +348,9 @@ class MModel extends CI_Model
             item_master.item_sku_id = item_sku.id";
 
         if (isset($param_data['from']) && $from != '')
-            $query .= " AND invoice_header.invoice_date >= '$from'";
+            $query .= " AND invoice.invoice_date >= '$from'";
         if (isset($param_data['to']) && $to != '')
-            $query .= " AND invoice_header.invoice_date <= '$to'";
+            $query .= " AND invoice.invoice_date <= '$to'";
         if (isset($param_data["item_code"]))
             $query .= " AND item_master.item_code = '$param' ";
 
@@ -331,10 +381,10 @@ class MModel extends CI_Model
                         i.item_code, 
                         i.item_name, 
                         i.unit_type, 
-                        i.re_order_level, 
+                        
                         sku.sku_code, 
                         sku.sku_name, 
-                        s.supplier_code, 
+                        s.supplier_id, 
                         s.supplier_name, 
                         i.`status`
                     FROM
@@ -357,7 +407,7 @@ class MModel extends CI_Model
                                         im.id, 
                                         im.item_code, 
                                         im.item_name, 
-                                        SUM(il.qty) AS qty, 
+                                        SUM(il.item_qty) AS qty, 
                                         SUM(il.total_price) AS total_price, 
                                         im.unit_type,
                                         il.unit_price,
@@ -370,7 +420,7 @@ class MModel extends CI_Model
                                         ON 
                                             im.item_sku_id = sku.id
                                         INNER JOIN
-                                        invoice_lines AS il
+                                        item_include_on_invoice AS il
                                         ON 
                                             il.item_code = im.item_code
                                         GROUP BY
@@ -429,15 +479,15 @@ class MModel extends CI_Model
                             "SELECT 
                                 im.item_code,
                                 im.item_name,
-                                SUM( il.qty ) AS qty 
+                                SUM( il.item_qty ) AS qty 
                             FROM
                                 item_master AS im
-                                INNER JOIN invoice_lines AS il ON im.item_code = il.item_code 
+                                INNER JOIN item_include_on_invoice AS il ON im.item_code = il.item_code 
                             GROUP BY
                                 im.item_code,
                                 im.item_name 
                             ORDER BY
-                                SUM( il.qty ) DESC 
+                                SUM( il.item_qty ) DESC 
                                 LIMIT 7");
 
         foreach ($res->result() as $items){
@@ -453,12 +503,12 @@ class MModel extends CI_Model
 
        $res= $this->db->query("
         SELECT
-            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 1 ) AS m1,
-            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 2 ) AS m2,
-            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 3 ) AS m3,
-            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 4 ) AS m4,
-            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 5 ) AS m5,
-            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 6 ) AS m6 
+            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice AS ih WHERE MONTH ( ih.invoice_date )= 1 ) AS m1,
+            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice AS ih WHERE MONTH ( ih.invoice_date )= 2 ) AS m2,
+            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice AS ih WHERE MONTH ( ih.invoice_date )= 3 ) AS m3,
+            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice AS ih WHERE MONTH ( ih.invoice_date )= 4 ) AS m4,
+            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice AS ih WHERE MONTH ( ih.invoice_date )= 5 ) AS m5,
+            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice AS ih WHERE MONTH ( ih.invoice_date )= 6 ) AS m6 
         FROM
         DUAL
         ");
@@ -476,7 +526,7 @@ class MModel extends CI_Model
     public function get_data_for_dashboard(){
 
         $res = $this->db->query("
-        SELECT IFNULL( SUM( ih.net_total ), 0 ) as sales FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 5
+        SELECT IFNULL( SUM( ih.net_total ), 0 ) as sales FROM invoice AS ih WHERE MONTH ( ih.invoice_date )= 5
         ");
 
         $data['total_sales'] = $res->row()->sales;
@@ -488,7 +538,7 @@ class MModel extends CI_Model
         $data['total_items'] = $res->row()->total_items;
 
         $res = $this->db->query("
-            SELECT COUNT(*) as invoices FROM invoice_header WHERE MONTH(last_modified_at) =5 
+            SELECT COUNT(*) as invoices FROM invoice WHERE MONTH(last_modified_at) =5 
         ");
 
         $data['total_invoices'] = $res->row()->invoices;

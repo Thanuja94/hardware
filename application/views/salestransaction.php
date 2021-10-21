@@ -59,8 +59,8 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label"> Customer Name</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="cus_name" placeholder=""
-                                                name="cus_name">
+                                            <input type="text" class="form-control" id="customer_name" placeholder=""
+                                                name="customer_name">
                                         </div>
                                     </div>
                                 </div>
@@ -88,8 +88,8 @@
                                         <label for="inputEmail3" class="col-md-4 col-form-label"> Customer Address
                                             1</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="cus_name" placeholder=""
-                                                name="cus_name">
+                                            <input type="text" class="form-control" id="address_line_1" placeholder=""
+                                                name="address_line_1">
                                         </div>
                                     </div>
                                 </div>
@@ -98,8 +98,8 @@
                                         <label for="inputEmail3" class="col-md-4 col-form-label">Customer Address
                                             2</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="cus_address" placeholder=""
-                                                name="cus_address">
+                                            <input type="text" class="form-control" id="address_line_2" placeholder=""
+                                                name="address_line_2">
                                         </div>
                                     </div>
                                 </div>
@@ -108,8 +108,8 @@
                                         <label for="inputEmail3" class="col-md-4 col-form-label">Customer Address
                                             3</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="cus_tel" placeholder=""
-                                                name="cus_tel">
+                                            <input type="text" class="form-control" id="address_line_3" placeholder=""
+                                                name="address_line_3">
                                         </div>
                                     </div>
                                 </div>
@@ -193,6 +193,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            
                                         </tbody>
                                     </table>
 
@@ -220,14 +221,14 @@
                                                         name="total_qty" value="0" disabled>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
+                                            <!-- <div class="form-group row">
                                                 <label for="inputPassword3" class="col-sm-4 col-form-label">Tax
                                                     (%)</label>
                                                 <div class="col-sm-8">
                                                     <input type="number" class="form-control" id="tax_amt"
                                                         placeholder="tax" value="0" disabled>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="form-group row">
                                                 <label for="inputPassword3" class="col-sm-4 col-form-label">Discount
                                                     (Rs)</label>

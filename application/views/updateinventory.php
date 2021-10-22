@@ -62,9 +62,9 @@
                                         <label for="inputEmail3" class="col-sm-6 col-form-label">Item Group</label>
                                         <div class="col-sm-6">
                                             <select class="form-control" id="sku_code" name="sku_code">
-                                                <?php foreach ($skus->result() as $sku) { ?>
-                                                <option value="<?php echo $sku->id ?>">
-                                                    <?php echo $sku->sku_code . '-' . $sku->sku_name ?>
+                                                <?php foreach ($itemgroups->result() as $itemgroup) { ?>
+                                                <option value="<?php echo $itemgroup->item_group ?>">
+                                                    <?php echo $itemgroup->item_group ?>
                                                 </option>
                                                 <?php } ?>
                                             </select>

@@ -85,8 +85,7 @@ class MModel extends CI_Model
                 il.unit_price, 
                 im.unit_type, 
                 im.item_name, 
-                sku.sku_code, 
-                sku.sku_name, 
+                im.item_group, 
                 il.discount,
                 il.item_qty,
                 il.total_price
@@ -104,15 +103,20 @@ class MModel extends CI_Model
                 item_master AS im
                 ON 
                     il.item_code = im.item_code
-                INNER JOIN
-                item_sku AS sku
-                ON 
-                    im.item_sku_id = sku.id
+                
                 WHERE ih.id=$id"
         );
         return $result;
     }
 
+    public function get_item_groups()
+    {
+        $result = $this->db
+            ->query("SELECT DISTINCT item_group from item_master ");
+
+        return $result;
+    }
+    
     public function get_item_list()
     {
         $result = $this->db
@@ -184,20 +188,16 @@ class MModel extends CI_Model
                         im.item_code, 
                         im.item_name, 
                         im.unit_type, 
-                        sku.sku_code, 
-                        sku.sku_name, 
+                        im.item_group,
                         i.selling_price
                     FROM
                         item_master AS im
-                        INNER JOIN
-                        item_sku AS sku
-                        ON 
-                            im.item_sku_id = sku.id
+                        
                         INNER JOIN
                         stock AS i
                         ON 
-                            im.id = i.item_id AND
-                            sku.id = i.item_sku_id
+                            im.id = i.item_id 
+                            
                     WHERE im.item_code='$item_code'
         ");
     }
@@ -319,7 +319,7 @@ class MModel extends CI_Model
         $query = "SELECT
         item_master.item_code, 
         item_master.item_name, 
-        item_sku.sku_name, 
+        item_master.item_group, 
         customer.customer_name,
         invoice.invoice_date, 
         item_include_on_invoice.unit_price, 
@@ -340,11 +340,7 @@ class MModel extends CI_Model
         item_master
         ON 
         item_include_on_invoice.item_code = item_master.item_code
-        INNER JOIN
-        item_sku
-        ON 
-            item_master.item_sku_id = item_sku.id AND
-            item_master.item_sku_id = item_sku.id";
+        ";
 
         if (isset($param_data['from']) && $from != '')
             $query .= " AND invoice.invoice_date >= '$from'";
@@ -380,18 +376,12 @@ class MModel extends CI_Model
                         i.item_code, 
                         i.item_name, 
                         i.unit_type, 
-                        
-                        sku.sku_code, 
-                        sku.sku_name, 
+                        i.item_group,
                         s.supplier_id, 
                         s.supplier_name, 
                         i.`status`
                     FROM
                         item_master AS i
-                        INNER JOIN
-                        item_sku AS sku
-                        ON 
-                            i.item_sku_id = sku.id
                         INNER JOIN
                         suppliers AS s
                         ON 

@@ -93,7 +93,7 @@ $customer = $customer_details->row();
                                         <tr>
                                             <td><?php echo $line->item_code?></td>
                                             <td><?php echo $line->item_name?></td>
-                                            <td><?php echo $line->sku_name?></td>
+                                            <td><?php echo $line->item_group?></td>
                                             <td><?php echo number_format($line->unit_price,2,'.',',')?></td>
                                             <td><?php echo $line->unit_type?></td>
                                             <td><?php echo $line->item_qty?></td>

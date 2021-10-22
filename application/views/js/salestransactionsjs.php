@@ -158,7 +158,7 @@
                         `<tr class='data_row' id='item` + rowCount + `' >` +
                         `<td class='item_code'>` + data.item_code + `</td>` +
                         `<td>` + data.item_name + `</td>` +
-                        `<td>` + data.sku_name + `</td>` +
+                        `<td>` + data.item_group + `</td>` +
                         `<td class='selling_price'>` + data.selling_price + `</td>` +
                         `<td>` + data.unit_type + `</td>` +
                         `<td class='qty'>` + qty + `</td>` +

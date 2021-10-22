@@ -103,7 +103,7 @@
                                         <td><?php echo $item->item_code ?></td>
                                         <td><?php echo $item->item_code ?></td>
                                         <td><?php echo $item->item_name ?></td>
-                                        <td><?php echo $item->sku_name ?></td>
+                                        <td><?php echo $item->item_group ?></td>
                                         <td><?php echo $item->customer_name ?></td>
                                         <td><?php echo $item->invoice_date ?></td>
                                         <td><?php echo $item->unit_price ?></td>

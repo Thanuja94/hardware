@@ -66,12 +66,9 @@
                                         <div class="col-sm-2"></div>
                                         <label for="lblskucode" class="col-sm-4 col-form-label">Item Group</label>
                                         <div class="col-sm-4">
-                                            <select class="form-control" id="sku" name="sku">
-                                                <?php foreach ($skus->result() as $skus) { ?>
-                                                    <option value="<?php echo $skus->id ?>"><?php echo $skus->sku_code . '-' . $skus->sku_name ?>
-                                                    </option>
-                                                <?php } ?>
-                                            </select>
+                                        <input type="text" class="form-control" id="group"
+                                                   placeholder="Item group" name="group" required>
+                                            
                                         </div>
                                         <div class="col-sm-2"></div>
                                     </div>

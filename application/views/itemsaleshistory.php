@@ -108,7 +108,7 @@
                                         <td><?php echo $item->invoice_date ?></td>
                                         <td><?php echo $item->unit_price ?></td>
                                         <td><?php echo $item->unit_type ?></td>
-                                        <td><?php echo $item->qty ?></td>
+                                        <td><?php echo $item->item_qty ?></td>
                                         <td><?php echo $item->total_price ?></td>
 
                                         <!-- <td style="text-align: center"><span class="fa fa-pen"></span></td> -->

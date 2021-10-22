@@ -61,7 +61,7 @@
                                 <th>Address</th>
                                 <th>Contact</th>
                                 <th>Email</th>
-                                <th style="text-align:center">Status</th>
+                                <!-- <th style="text-align:center">Status</th> -->
                             </tr>
                         </thead>
                         <tbody>

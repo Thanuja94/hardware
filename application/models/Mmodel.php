@@ -153,18 +153,14 @@ class MModel extends CI_Model
                                         im.item_code,
                                         im.item_name,
                                         im.unit_type,   
-                                        im.re_order_level,   
-                                        sku.sku_code,
-                                        sku.sku_name,
-                                        inv.qty,
-                                        inv.purchased_price,
-                                        inv.selling_price,
-                                        inv.date_purchased 
+                                        im.item_group,   
+                                        sto.qty,
+                                        sto.purchased_price,
+                                        sto.selling_price,
+                                        sto.purchase_date 
                                     FROM
-                                        inventory AS inv
-                                        INNER JOIN item_master AS im ON inv.item_id = im.id
-                                        INNER JOIN item_sku AS sku ON inv.item_sku_id = sku.id 
-                                        AND im.item_sku_id = sku.id ";
+                                        stock AS sto
+                                        INNER JOIN item_master AS im ON sto.item_id = im.id ";
 
         if (($param_data['from'] !=''))
             $query .= " AND inv.date_purchased >= '$from'";
@@ -324,7 +320,7 @@ class MModel extends CI_Model
         item_master.item_code, 
         item_master.item_name, 
         item_sku.sku_name, 
-        
+        customer.customer_name,
         invoice.invoice_date, 
         item_include_on_invoice.unit_price, 
         item_include_on_invoice.item_qty, 
@@ -332,7 +328,10 @@ class MModel extends CI_Model
         item_include_on_invoice.total_price, 
         item_include_on_invoice.discount
     FROM
+    customer 
+    INNER JOIN
         invoice
+        ON customer.cus_id = invoice.cus_id
         INNER JOIN
         item_include_on_invoice
         ON 
@@ -411,14 +410,10 @@ class MModel extends CI_Model
                                         SUM(il.total_price) AS total_price, 
                                         im.unit_type,
                                         il.unit_price,
-                                        sku.sku_code, 
-                                        sku.sku_name
+                                        im.item_group
+                                        
                                     FROM
                                         item_master AS im
-                                        INNER JOIN
-                                        item_sku AS sku
-                                        ON 
-                                            im.item_sku_id = sku.id
                                         INNER JOIN
                                         item_include_on_invoice AS il
                                         ON 
@@ -428,9 +423,9 @@ class MModel extends CI_Model
                                         im.item_code, 
                                         im.item_name, 
                                         il.unit_price, 
-                                        im.unit_type, 
-                                        sku.sku_code, 
-                                        sku.sku_name
+                                        im.unit_type,
+                                        im.item_group 
+                                        
         ");
     }
 
@@ -442,31 +437,25 @@ class MModel extends CI_Model
                 im.item_code, 
                 im.item_name, 
                 im.unit_type, 
-                sku.sku_code, 
-                sku.sku_name, 
-                SUM(i.qty) as qty, 
-                i.selling_price, 
-                im.re_order_level
+                im.item_group,
+                SUM(s.qty) as qty, 
+                s.selling_price 
+                
             FROM
                 item_master AS im
+                
                 INNER JOIN
-                item_sku AS sku
+                stock AS s
                 ON 
-                    im.item_sku_id = sku.id
-                INNER JOIN
-                inventory AS i
-                ON 
-                    im.id = i.item_id AND
-                    sku.id = i.item_sku_id
+                    im.id = s.item_id 
             GROUP BY
                 im.id, 
                 im.item_code, 
                 im.item_name, 
                 im.unit_type, 
-                sku.sku_code, 
-                sku.sku_name, 
-                i.selling_price, 
-                im.re_order_level"
+                im.item_group,
+                s.selling_price 
+                "
         );
     }
 

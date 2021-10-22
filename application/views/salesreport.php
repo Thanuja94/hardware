@@ -56,7 +56,7 @@
                                         <tr>
                                             <td><?php echo $sales->item_code?></td>
                                             <td><?php echo $sales->item_name?></td>
-                                            <td><?php echo $sales->sku_name?></td>
+                                            <td><?php echo $sales->item_group?></td>
                                             <td><?php echo number_format($sales->unit_price,2,'.',',')?></td>
                                             <td><?php echo $sales->unit_type?></td>
                                             <td><?php echo $sales->qty?></td>

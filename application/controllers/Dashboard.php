@@ -250,9 +250,9 @@ class Dashboard extends CI_Controller
         // $data['last_modified_by'] = $this->session->userdata('name');
 
         if ($this->mmodel->insert('suppliers', $data)) {
-            //$this->item_create('Item Added Successfully');
+            $this->suppliers('Supplier Added Successfully');
         } else {
-           // $this->item_create('Item failed to Insert', 'alert-danger');
+            $this->suppliers('Failed to Insert Supplier', 'alert-danger');
         }
     }
     public function invoicelist()
@@ -406,7 +406,7 @@ class Dashboard extends CI_Controller
 
     }
 
-    public function suppliers(){
+    public function suppliers($msg = "", $alert_type = "alert-success"){
         $object['controller'] = $this;
         $object['active_tab'] = "suppliers";
         $object['title'] = "Suppliers";
@@ -419,8 +419,12 @@ class Dashboard extends CI_Controller
         $param_data["item_code"] = $this->input->get('item_code');
         $param_data["param"] = $this->input->get('param');
 
+        $data["msg"] = $msg;
+        $data["alert_type"] = $alert_type;
+
         $data["sales_history_table"] = $this->mmodel->get_salesHistory_table($param_data);
-        $data["item_codes"] = $this->mmodel->get_item_codes();
+        // $data["item_codes"] = $this->mmodel->get_item_codes();
+        $data['suppliers'] = $this->mmodel->get_all('suppliers');
         $this->load->view('supplier_list', $data);
         $this->load->view('footer');
         // $this->load->view('js/itemsaleshistoryjs');

@@ -30,6 +30,17 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
+                    <?php if ($msg) { ?>
+
+                    <div class="alert <?php echo $alert_type ?> alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                        <?php echo $msg ?>
+                    </div>
+
+                    <?php } ?>
                     <h3 class="card-title">Supplier List
                         <button id="add_new_supplier" class="btn btn-primary" data-toggle="modal"
                             data-target="#modal-default">
@@ -40,6 +51,7 @@
                     <br>
 
                 </div>
+
                 <div class="card-body">
                     <table class="table table-striped">
                         <thead>
@@ -52,6 +64,20 @@
                                 <th style="text-align:center">Status</th>
                             </tr>
                         </thead>
+                        <tbody>
+                                    <?php foreach ($suppliers->result() as $supplier) { ?>
+                                        <tr>
+                                        <td><?php echo $supplier->id ?></td>
+                                            <td><?php echo $supplier->supplier_name ?></td>
+                                            <td><?php echo $supplier->address_line_3 ?></td>
+                                            <td><?php echo $supplier->sup_tel_no ?></td>
+                                            <td><?php echo $supplier->supplier_email ?></td>
+                                            <!-- <td> <span class="right badge <?php echo $item->status ? "badge-success" :"badge-danger" ?>"><?php echo $item->status ? "Active" :"In-active" ?></span> </td>
+                                            <td><span class="fa fa-pen" onclick="alert();"></span></td> -->
+                                        </tr>
+
+                                    <?php } ?>
+                                    </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -73,8 +99,7 @@
                 <h4 class="modal-title">Add New Supplier</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
             </div>
-            <form id="form_data" method="post"
-                action="<?php echo base_url() ?>save_suppliers">
+            <form id="form_data" method="post" action="<?php echo base_url() ?>save_suppliers">
                 <div class="modal-body">
 
 
@@ -89,36 +114,36 @@
                     <div class="form-group">
                         <li class="fa fa-home">&nbsp;&nbsp;</li>
                         <label>Supplier Address Line 1</label>
-                        <input class="form-control input-rounded" name="adderss1" id="adderss1" placeholder="supplier address line 1"
-                            required="" type="text">
+                        <input class="form-control input-rounded" name="adderss1" id="adderss1"
+                            placeholder="supplier address line 1" required="" type="text">
                     </div>
 
                     <div class="form-group">
                         <li class="fa fa-home">&nbsp;&nbsp;</li>
                         <label>Supplier Address Line 2</label>
-                        <input class="form-control input-rounded" name="adderss2" id="adderss2" placeholder="supplier address line 2"
-                            required="" type="text">
+                        <input class="form-control input-rounded" name="adderss2" id="adderss2"
+                            placeholder="supplier address line 2" required="" type="text">
                     </div>
 
                     <div class="form-group">
                         <li class="fa fa-home">&nbsp;&nbsp;</li>
                         <label>Supplier Address Line 3</label>
-                        <input class="form-control input-rounded" name="adderss3" id="adderss3" placeholder="supplier address line_3"
-                            required="" type="text">
+                        <input class="form-control input-rounded" name="adderss3" id="adderss3"
+                            placeholder="supplier address line_3" required="" type="text">
                     </div>
 
                     <div class="form-group">
                         <li class="fa fa-envelope">&nbsp;&nbsp;</li>
                         <label>Email</label>
-                        <input class="form-control input-rounded" name="email" id="email" placeholder="Email" required=""
-                            type="email">
+                        <input class="form-control input-rounded" name="email" id="email" placeholder="Email"
+                            required="" type="email">
                     </div>
 
                     <div class="form-group">
                         <li class="fa fa-phone">&nbsp;&nbsp;</li>
                         <label>Supplier Contact</label>
-                        <input class="form-control input-rounded" name="contact_number" id="contact_number" placeholder="contact number" required=""
-                            type="text">
+                        <input class="form-control input-rounded" name="contact_number" id="contact_number"
+                            placeholder="contact number" required="" type="text">
                     </div>
 
 

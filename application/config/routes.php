@@ -72,6 +72,7 @@ $route['view_sku'] = 'dashboard/view_sku';
 $route['save_item_inventory'] = 'dashboard/save_item_inventory';
 $route['suppliers'] = 'dashboard/suppliers';
 $route['save_suppliers'] = 'dashboard/save_suppliers';
+$route['save_stock'] = 'dashboard/save_stock';
 $route['GRN'] = 'dashboard/view_GRN';
 $route['delivery_note'] = 'dashboard/delivery_note';
 $route['supplier_invoice'] = 'dashboard/supplier_invoice';

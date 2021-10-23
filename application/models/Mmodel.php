@@ -124,11 +124,11 @@ class MModel extends CI_Model
                         item_master.item_code, 
                         item_master.item_name
                     FROM
-                        stock
+                    item_add_on_stock
                         INNER JOIN
                         item_master
                         ON 
-                            stock.item_id = item_master.id");
+                        item_add_on_stock.item_id = item_master.id");
 
         return $result;
     }
@@ -163,7 +163,7 @@ class MModel extends CI_Model
                                         sto.selling_price,
                                         sto.purchase_date 
                                     FROM
-                                        stock AS sto
+                                    item_add_on_stock AS sto
                                         INNER JOIN item_master AS im ON sto.item_id = im.id ";
 
         if (($param_data['from'] !=''))
@@ -274,6 +274,30 @@ class MModel extends CI_Model
         else $invoice_number = "ITM" . $invoice_number;
 
         return $invoice_number;
+    }
+
+    public function generate_stock_number()
+    {
+        $stock_number = "";
+
+        $this->db->select("id");
+        $this->db->from("stock");
+        $this->db->limit(1);
+        $this->db->order_by('id', "DESC");
+        $result = $this->db->get();
+        if ($result->num_rows() == 0)
+            $rowcount = 0;
+        else {
+            $rowcount = $result->row()->id;
+        }
+        $rowcount++;
+        if ($rowcount < 10) $stock_number = "STO0000" . $rowcount;
+        else if ($rowcount < 100) $stock_number = "STO000" . $rowcount;
+        else if ($rowcount < 1000) $stock_number = "STO00" . $rowcount;
+        else if ($rowcount < 10000) $stock_number = "STO0" . $rowcount;
+        else $stock_number = "STO" . $stock_number;
+
+        return $stock_number;
     }
 
     public function save_transaction($header, $line_records,$customer)
@@ -435,7 +459,7 @@ class MModel extends CI_Model
                 item_master AS im
                 
                 INNER JOIN
-                stock AS s
+                item_add_on_stock AS s
                 ON 
                     im.id = s.item_id 
             GROUP BY

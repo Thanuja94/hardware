@@ -223,7 +223,8 @@ class Dashboard extends CI_Controller
     public function save_item($msg = "", $alert_type = "alert-success"){
 
         $data['item_name'] = $this->input->get_post('name');
-        $data['item_sku_id'] = $this->input->get_post('sku');
+       // $data['item_sku_id'] = $this->input->get_post('sku');
+        $data['item_group'] = $this->input->get_post('group');
         $data['supplier_id'] = $this->input->get_post('supplier');
         $data['unit_type'] = $this->input->get_post('unit_type');
         // $data['re_order_level'] = $this->input->get_post('re_order_level');
@@ -239,6 +240,18 @@ class Dashboard extends CI_Controller
         }
     }
 
+    public function save_stock($msg = "", $alert_type = "alert-success"){
+
+        $data['purchase_date'] = $this->input->get_post('purchased_date');
+        $data['stock_id'] = $this->mmodel->generate_stock_number();
+       
+
+        if ($this->mmodel->insert('stock', $data)) {
+            $this->suppliers('Supplier Added Successfully');
+        } else {
+            $this->suppliers('Failed to Insert Supplier', 'alert-danger');
+        }
+    }
     public function save_suppliers($msg = "", $alert_type = "alert-success"){
 
         $data['supplier_name'] = $this->input->get_post('supplier_name');
@@ -622,7 +635,7 @@ class Dashboard extends CI_Controller
         $this->load->view('side_menu');
 
         //$data["skus"] = $this->mmodel->get_all('item_sku');
-        $data["items"] = $this->mmodel->get_all('item_master');
+        $data["stocks"] = $this->mmodel->get_all('stock');
         $data["msg"] = $msg;
         $data["alert_type"] = $alert_type;
 

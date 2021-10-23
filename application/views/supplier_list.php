@@ -65,19 +65,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                                    <?php foreach ($suppliers->result() as $supplier) { ?>
-                                        <tr>
-                                        <td><?php echo $supplier->id ?></td>
-                                            <td><?php echo $supplier->supplier_name ?></td>
-                                            <td><?php echo $supplier->address_line_3 ?></td>
-                                            <td><?php echo $supplier->sup_tel_no ?></td>
-                                            <td><?php echo $supplier->supplier_email ?></td>
-                                            <!-- <td> <span class="right badge <?php echo $item->status ? "badge-success" :"badge-danger" ?>"><?php echo $item->status ? "Active" :"In-active" ?></span> </td>
+                            <?php foreach ($suppliers->result() as $supplier) { ?>
+                            <tr>
+                                <td><?php echo $supplier->id ?></td>
+                                <td><?php echo $supplier->supplier_name ?></td>
+                                <td><?php echo $supplier->address_line_3 ?></td>
+                                <td><?php echo $supplier->sup_tel_no ?></td>
+                                <td><?php echo $supplier->supplier_email ?></td>
+                                <!-- <td> <span class="right badge <?php echo $item->status ? "badge-success" :"badge-danger" ?>"><?php echo $item->status ? "Active" :"In-active" ?></span> </td>
                                             <td><span class="fa fa-pen" onclick="alert();"></span></td> -->
-                                        </tr>
+                            </tr>
 
-                                    <?php } ?>
-                                    </tbody>
+                            <?php } ?>
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->

@@ -28,6 +28,17 @@
                     <div class="col-sm-4 col-form-label" style="text-align:center;">Stock List</div>
                     <div class="col-sm-4"></div>
                 </div>
+                <?php if ($msg) { ?>
+
+                <div class="alert <?php echo $alert_type ?> alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                    <?php echo $msg ?>
+                </div>
+
+                <?php } ?>
 
                 <div class="row">
                     <div class="col-sm-10">
@@ -89,8 +100,11 @@
                                         <tr>
                                             <td><?php echo $stock->stock_id ?></td>
                                             <td><?php echo $stock->purchase_date ?></td>
-                                            <td> <a href="<?php echo base_url()?>itemupdate" class="btn btn-primary">Add
+                                            <td> <a href="<?php echo base_url() ?>itemupdate?stock_id=<?php echo $stock->stock_id?>"  class="btn btn-primary">Add
                                                     Items</a></td>
+                                                    <!-- <td> <a href="<?php echo base_url()?>itemupdate" class="btn btn-primary">Add
+                                                    Items</a></td> -->
+                                                    
                                         </tr>
 
                                         <?php } ?>

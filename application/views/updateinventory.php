@@ -57,8 +57,14 @@
                                         <div class="col-sm-4"></div>
 
                                     </div>
-
                                     <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-6 col-form-label">Stock ID</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="stock_id" placeholder=""
+                                            value="<?php echo $stock_id ?>" name="stock_id" >
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-6 col-form-label">Item Group</label>
                                         <div class="col-sm-6">
                                             <select class="form-control" id="sku_code" name="sku_code">
@@ -69,7 +75,7 @@
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group row">
                                         <label for="inputPassword3" class="col-sm-6 col-form-label">Item Code</label>
                                         <div class="col-sm-6">

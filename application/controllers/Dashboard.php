@@ -82,45 +82,76 @@ class Dashboard extends CI_Controller
         $this->load->view('js/item_listjs');
     }
     
-    public function add_items_inventory($msg = "", $alert_type = "alert-success")
-    {
-        $object['controller'] = $this;
-        $object['active_tab'] = "item_update";
-        $object['title'] = "ItemUpdate";
-        $this->load->view('header', $object);
-        $this->load->view('top_header');
-        $this->load->view('side_menu');
+    public function add_items_inventory($msg = "", $alert_type = "alert-success", $stock_id = "")
+	{
+		$object['controller'] = $this;
+		$object['active_tab'] = "item_update";
+		$object['title'] = "ItemUpdate";
+		$this->load->view('header', $object);
+		$this->load->view('top_header');
+		$this->load->view('side_menu');
 
-        //$data["skus"] = $this->mmodel->get_all('item_sku_1');
-        $data["items"] = $this->mmodel->get_all('item_master');
-        $data["itemgroups"] = $this->mmodel->get_item_groups();
+if($this->input->get('stock_id')){
+			$stock_id = $this->input->get('stock_id');
+		}
+		//$data["skus"] = $this->mmodel->get_all('item_sku_1');
+		$data["items"] = $this->mmodel->get_all('item_master');
+		$data["itemgroups"] = $this->mmodel->get_item_groups();
+		$data["stock_id"] = $stock_id;
+
+		$data["msg"] = $msg;
+		$data["alert_type"] = $alert_type;
+		
+		if(!$stock_id){
+			$data["msg"] = "No stock select to add items";
+			$data["alert_type"] = "alert-danger";
+		}
+
+		$this->load->view('updateinventory', $data);
+		$this->load->view('footer');
+		$this->load->view('js/updateinventoryjs');
+	}
+    // public function add_items_inventory($msg = "", $alert_type = "alert-success", $stock = "")
+    // {
+    //     $object['controller'] = $this;
+    //     $object['active_tab'] = "item_update";
+    //     $object['title'] = "ItemUpdate";
+    //     $this->load->view('header', $object);
+    //     $this->load->view('top_header');
+    //     $this->load->view('side_menu');
+
+    //     //$data["skus"] = $this->mmodel->get_all('item_sku_1');
+    //     $data["items"] = $this->mmodel->get_all('item_master');
+    //     $data["itemgroups"] = $this->mmodel->get_item_groups();
         
-        $data["msg"] = $msg;
-        $data["alert_type"] = $alert_type;
+    //     $data["msg"] = $msg;
+    //     $data["alert_type"] = $alert_type;
 
-        $this->load->view('updateinventory', $data);
-        $this->load->view('footer');
-        $this->load->view('js/updateinventoryjs');
-    }
+    //     $this->load->view('updateinventory', $data);
+    //     $this->load->view('footer');
+    //     $this->load->view('js/updateinventoryjs');
+    // }
 
     public function save_item_inventory()
     {
         $data['item_id'] = $this->input->get_post('item_code');
-        $data['item_sku_id'] = $this->input->get_post('sku_code');
+        $data['stock_id'] = $this->input->get_post('stock_id');
+        // $data['item_sku_id'] = $this->input->get_post('sku_code');
         $data['qty'] = $this->input->get_post('qty');
         $data['purchased_price'] = $this->input->get_post('price');
         $data['profit_type'] = $this->input->get_post('profit_type');
         $data['profit_margin'] = $this->input->get_post('profit_margin');
         $data['selling_price'] = $this->input->get_post('selling_price');
-        $data['date_purchased'] = $this->input->get_post('date');
+        $data['purchase_date'] = $this->input->get_post('date');
         $data['last_modified_at'] = date('Y-m-d H:i:s');
         $data['last_modified_by'] = $this->session->userdata('name');
+        $stock_id = $this->input->get_post('stock_id');
 
-        $res = $this->mmodel->insert('inventory', $data);
+        $res = $this->mmodel->insert('item_add_on_stock', $data);
         if ($res) {
-            $this->add_items_inventory('Items Added Successfully');
+            $this->add_items_inventory('Items Added Successfully', 'alert-success', $stock_id);
         } else {
-            $this->add_items_inventory('Items failed to Insert', 'alert-danger');
+            $this->add_items_inventory('Items failed to Insert', 'alert-danger',$stock_id);
         }
 
     }
@@ -247,9 +278,9 @@ class Dashboard extends CI_Controller
        
 
         if ($this->mmodel->insert('stock', $data)) {
-            $this->suppliers('Supplier Added Successfully');
+            $this->add_stock('Stock Added Successfully');
         } else {
-            $this->suppliers('Failed to Insert Supplier', 'alert-danger');
+            $this->add_stock('Failed to Insert Stock', 'alert-danger');
         }
     }
     public function save_suppliers($msg = "", $alert_type = "alert-success"){

@@ -89,3 +89,4 @@ $route['edit_supplier'] = 'dashboard/edit_supplier';
 
 //ajax routes
 $route['get_item_details'] = 'dashboard/get_item_details';
+$route['get_item_details_for_order'] = 'dashboard/get_item_details_for_order';

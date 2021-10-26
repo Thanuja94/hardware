@@ -359,6 +359,8 @@ if($this->input->get('stock_id')){
 
         $data["inv_number"] = $this->mmodel->generate_invoice_number();
         $data["items"] = $this->mmodel->get_item_list();
+        $data["stocks"] = $this->mmodel->get_all('stock');
+
         $data["inv_date"] = date('Y-m-d');
 
         $this->load->view('salestransaction', $data);
@@ -447,6 +449,16 @@ if($this->input->get('stock_id')){
         $item_code = $this->input->get('item_code');
 
         $item_details = $this->mmodel->get_item_details_for_transaction($item_code);
+
+        echo json_encode($item_details->row());
+
+    }
+
+    public function get_item_details_for_order()
+    {
+        $item_code = $this->input->get('item_code');
+
+        $item_details = $this->mmodel->get_item_details_for_new_order($item_code);
 
         echo json_encode($item_details->row());
 
@@ -585,7 +597,7 @@ if($this->input->get('stock_id')){
         $this->load->view('top_header');
         $this->load->view('side_menu');
 
-        //$data["skus"] = $this->mmodel->get_all('item_sku');
+        $data["items"] = $this->mmodel->get_all('item_master');
         $data["unit_types"] = $this->mmodel->get_all('unit_types');
         $data["suppliers"] = $this->mmodel->get_all('suppliers');
         $data["msg"] = $msg;
@@ -593,7 +605,7 @@ if($this->input->get('stock_id')){
 
         $this->load->view('add_new_order',$data);
         $this->load->view('footer');
-       // $this->load->view('js/item_createjs');
+        $this->load->view('js/new_orderjs');
     }
 
 

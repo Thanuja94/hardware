@@ -194,13 +194,30 @@ class MModel extends CI_Model
                         item_master AS im
                         
                         INNER JOIN
-                        stock AS i
+                        item_add_on_stock AS i
                         ON 
                             im.id = i.item_id 
                             
                     WHERE im.item_code='$item_code'
         ");
     }
+
+    public function get_item_details_for_new_order($item_code)
+    {
+
+        return $this->db->query("
+                    SELECT
+                        im.item_code, 
+                        im.item_name, 
+                        im.item_group
+                        
+                    FROM
+                        item_master AS im
+                                               
+                    WHERE im.item_code='$item_code'
+        ");
+    }
+
 
     public function generate_invoice_number()
     {
@@ -251,6 +268,31 @@ class MModel extends CI_Model
 
 
         return $supplier_number;
+    }
+
+    public function generate_order_number()
+    {
+        $order_number = "";
+
+        $this->db->select("id");
+        $this->db->from("order");
+        $this->db->limit(1);
+        $this->db->order_by('id', "DESC");
+        $result = $this->db->get();
+        if ($result->num_rows() == 0)
+            $rowcount = 0;
+        else {
+            $rowcount = $result->row()->id;
+        }
+        $rowcount++;
+        if ($rowcount < 10) $order_number = "ORD0000" . $rowcount;
+        else if ($rowcount < 100) $order_number = "ORD000" . $rowcount;
+        else if ($rowcount < 1000) $order_number = "ORD00" . $rowcount;
+        else if ($rowcount < 10000) $order_number = "ORD0" . $rowcount;
+        else $order_number = "ORD" . $order_number;
+
+
+        return $order_number;
     }
     public function generate_item_number()
     {

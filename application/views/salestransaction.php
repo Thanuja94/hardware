@@ -129,9 +129,12 @@
                                         <div class="form-group row">
                                             <label for="inputEmail3" class="col-md-4 col-form-label"> Stock ID</label>
                                             <div class="col-md-8">
-                                                <select class="form-control">
-                                                    <option>STK-033</option>
-
+                                                <select class="form-control" id="stock_id">
+                                                <?php foreach ($stocks->result() as $stock) { ?>
+                                                    <option value="<?php echo $stock->id ?>"><?php echo $stock->stock_id ?>
+                                                    </option>
+                                                <?php } ?>
+                                                     
                                                 </select>
                                             </div>
                                         </div>

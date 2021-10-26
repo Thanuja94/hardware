@@ -27,6 +27,21 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-4 col-form-label">Order ID</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="order_id" placeholder=""
+                                        name="order_id">
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -36,11 +51,12 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label"> Supplier</label>
                                     <div class="col-md-8">
-                                        <select class="form-control">
-                                        <?php foreach ($suppliers->result() as $supplier) { ?>
-                                                    <option value="<?php echo $supplier->id ?>"><?php echo $supplier->supplier_id.'-'.$supplier->supplier_name ?>
-                                                    </option>
-                                                <?php } ?>
+                                        <select id="supplier_id" class="form-control">
+                                            <?php foreach ($suppliers->result() as $supplier) { ?>
+                                            <option value="<?php echo $supplier->id ?>">
+                                                <?php echo $supplier->supplier_id.'-'.$supplier->supplier_name ?>
+                                            </option>
+                                            <?php } ?>
 
                                         </select>
                                     </div>
@@ -60,7 +76,7 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label">Order Date</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="order_date" placeholder=""
+                                        <input type="date" class="form-control" id="order_date" placeholder=""
                                             name="order_date">
                                     </div>
                                 </div>
@@ -80,7 +96,11 @@
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <select id="item_code" class="form-control select2bs4">
-                                            <option>ITM-032</option>
+                                            <?php foreach ($items->result() as $item) { ?>
+                                            <option value="<?php echo $item->item_code ?>">
+                                                <?php echo $item->item_code.'-'.$item->item_name ?>
+                                            </option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -112,7 +132,7 @@
 
                                         <th>Item Code</th>
                                         <th>Item Name</th>
-                                        <th>Item Brand</th>
+                                        <th>Item Group</th>
                                         <th>Item QTY</th>
 
 
@@ -132,7 +152,7 @@
                             <div class="form-horizontal">
                                 <div class="card-body">
 
-                                    <button type="submit" id="btn_save_tans" class="btn btn-info full-width">Save
+                                    <button type="submit" id="btn_save_order" class="btn btn-info full-width">Save
                                         Order</button>
                                     <a href="<?php echo base_url()?>order_list" type="button"
                                         class="btn btn-default float-right">Cancel</a>

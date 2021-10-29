@@ -181,27 +181,28 @@ function removeRecord(itemCode) {
                     var arrayOfThisRow = [];
 
                     arrayOfThisRow[0] = $(this).find(".item_code").html();
-                    arrayOfThisRow[1] = $(this).find(".selling_price").html();
-                    arrayOfThisRow[2] = $(this).find(".discount_pct").html();
-                    arrayOfThisRow[3] = $(this).find(".qty").html();
-                    arrayOfThisRow[4] = $(this).find(".total_value").html();
+                    arrayOfThisRow[1] = $(this).find(".qty").html();
+                    // arrayOfThisRow[1] = $(this).find(".selling_price").html();
+                    // arrayOfThisRow[2] = $(this).find(".discount_pct").html();
+                   
+                    // arrayOfThisRow[4] = $(this).find(".total_value").html();
                     myTableArray.push(arrayOfThisRow);
                 });
 
                 $.post(
                     baseUrl + "save_order", {
-                        invoice_number: this.$invNo.val(),
-                        inv_date: this.$invDate.val(),
-                        customer_name: this.$cusName.val(),
-                        address_line_1: this.$cusAddress1.val(),
-                        address_line_2: this.$cusAddress2.val(),
-                        address_line_3: this.$cusAddress3.val(),
-                        cus_tel: this.$cusTel.val(),
-                        gross_total: this.$txt_gross_total.val(),
-                        total_qty: this.$qtyTotal,
-                        tax_amt: this.$txt_tax_amt.val(),
-                        total_discount: this.$txt_total_discount.val(),
-                        net_total: this.$txt_net_total.val(),
+                        order_id: this.$order_id.val(),
+                        order_date: this.$order_date.val(),
+                        supplier_id: this.$supplier_id.val(),
+                        // address_line_1: this.$cusAddress1.val(),
+                        // address_line_2: this.$cusAddress2.val(),
+                        // address_line_3: this.$cusAddress3.val(),
+                        // cus_tel: this.$cusTel.val(),
+                        // gross_total: this.$txt_gross_total.val(),
+                        // total_qty: this.$qtyTotal,
+                        // tax_amt: this.$txt_tax_amt.val(),
+                        // total_discount: this.$txt_total_discount.val(),
+                        // net_total: this.$txt_net_total.val(),
                         item_list: JSON.stringify(myTableArray)
                     },
                     function(result) {
@@ -210,14 +211,14 @@ function removeRecord(itemCode) {
 
                         if (res.status == 1) {
                             Swal.fire({
-                                title: 'Transaction added Successfully...',
+                                title: 'Order Saved Successfully',
                                 confirmButtonText: `OK`,
                                 icon: 'success'
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href =
-                                        "<?php echo base_url()?>invoice?id=" + res
-                                        .trans_id;
+                                        "<?php echo base_url()?>order_list" 
+                                        
                                 }
                             })
                         }

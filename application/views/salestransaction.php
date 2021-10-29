@@ -32,8 +32,7 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label"> Invoice No</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="inv_no"
-                                                value="<?php echo $inv_number ?>" name="inv_no" disabled>
+                                            <input type="text" class="form-control" id="inv_no" value="<?php echo $inv_number ?>" name="inv_no" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -41,8 +40,7 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label">Date</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="inv_date"
-                                                value="<?php echo $inv_date ?>" name="inv_date" disabled>
+                                            <input type="text" class="form-control" id="inv_date" value="<?php echo $inv_date ?>" name="inv_date" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -59,8 +57,7 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label"> Customer Name</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="customer_name" placeholder=""
-                                                name="customer_name">
+                                            <input type="text" class="form-control" id="customer_name" placeholder="" name="customer_name">
                                         </div>
                                     </div>
                                 </div>
@@ -69,8 +66,7 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label">Tel No.</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="cus_tel" placeholder=""
-                                                name="cus_tel">
+                                            <input type="text" class="form-control" id="cus_tel" placeholder="" name="cus_tel">
                                         </div>
                                     </div>
                                 </div>
@@ -88,8 +84,7 @@
                                         <label for="inputEmail3" class="col-md-4 col-form-label"> Customer Address
                                             1</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="address_line_1" placeholder=""
-                                                name="address_line_1">
+                                            <input type="text" class="form-control" id="address_line_1" placeholder="" name="address_line_1">
                                         </div>
                                     </div>
                                 </div>
@@ -98,8 +93,7 @@
                                         <label for="inputEmail3" class="col-md-4 col-form-label">Customer Address
                                             2</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="address_line_2" placeholder=""
-                                                name="address_line_2">
+                                            <input type="text" class="form-control" id="address_line_2" placeholder="" name="address_line_2">
                                         </div>
                                     </div>
                                 </div>
@@ -108,8 +102,7 @@
                                         <label for="inputEmail3" class="col-md-4 col-form-label">Customer Address
                                             3</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="address_line_3" placeholder=""
-                                                name="address_line_3">
+                                            <input type="text" class="form-control" id="address_line_3" placeholder="" name="address_line_3">
                                         </div>
                                     </div>
                                 </div>
@@ -122,32 +115,19 @@
                     <div class="col-md-12">
                         <div class="row">
                             <!-- <label for="" class="col-md-1 col-form-label">Add Items</label> -->
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <div class="row">
-
-                                    <div class="col-md-3">
-                                        <div class="form-group row">
-                                            <label for="inputEmail3" class="col-md-4 col-form-label"> Stock ID</label>
-                                            <div class="col-md-8">
-                                                <select class="form-control" id="stock_id">
-                                                <?php foreach ($stocks->result() as $stock) { ?>
-                                                    <option value="<?php echo $stock->id ?>"><?php echo $stock->stock_id ?>
-                                                    </option>
-                                                <?php } ?>
-                                                     
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                
                                     <div class="col-md-4">
                                         <div class="form-group row">
-                                            <div class="col-md-12">
+                                            <label for="inputEmail3" class="col-md-3 col-form-label"> Add Item</label>
+                                            <div class="col-md-9">
                                                 <select id="item_code" class="form-control select2bs4">
+                                                    <option value="">Select Item</option>
                                                     <?php foreach ($items->result() as $item) { ?>
-                                                    <option value="<?php echo $item->item_code ?>">
-                                                        <?php echo $item->item_code . '-' . $item->item_name ?>
-                                                    </option>
+                                                        <option value="<?php echo $item->item_code ?>">
+                                                            <?php echo $item->item_code . '-' . $item->item_name ?>
+                                                        </option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -155,17 +135,28 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group row">
+
                                             <div class="col-md-12">
-                                                <input type="number" class="form-control" id="item_qty"
-                                                    placeholder="Qty (1)">
+                                                <select class="form-control" id="stock_id">
+                                                    
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-2">
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <input type="number" class="form-control" id="item_qty" placeholder="Qty (1)">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group row">
                                             <div class="col-md-12">
-                                                <input type="number" class="form-control" id="item_discount"
-                                                    placeholder="Discount % (0)">
+                                                <input type="number" class="form-control" id="item_discount" placeholder="Discount % (0)">
                                             </div>
                                         </div>
                                     </div>
@@ -196,7 +187,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+
                                         </tbody>
                                     </table>
 
@@ -212,16 +203,14 @@
                                                 <label for="inputEmail3" class="col-sm-4 col-form-label">Gross
                                                     Total</label>
                                                 <div class="col-sm-8">
-                                                    <input type="number" class="form-control" id="gross_total"
-                                                        name="gross_total" value="0" disabled>
+                                                    <input type="number" class="form-control" id="gross_total" name="gross_total" value="0" disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputPassword3" class="col-sm-4 col-form-label">Qty
                                                     Total</label>
                                                 <div class="col-sm-8">
-                                                    <input type="number" class="form-control" id="total_qty"
-                                                        name="total_qty" value="0" disabled>
+                                                    <input type="number" class="form-control" id="total_qty" name="total_qty" value="0" disabled>
                                                 </div>
                                             </div>
                                             <!-- <div class="form-group row">
@@ -236,26 +225,22 @@
                                                 <label for="inputPassword3" class="col-sm-4 col-form-label">Discount
                                                     (Rs)</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="total_discount"
-                                                        value="0" name="total_discount" disabled>
+                                                    <input type="text" class="form-control" id="total_discount" value="0" name="total_discount" disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputPassword3" class="col-sm-4 col-form-label">Net Total
                                                     (Rs)</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="net_total" value="0"
-                                                        disabled>
+                                                    <input type="text" class="form-control" id="net_total" value="0" disabled>
                                                 </div>
                                             </div>
 
                                         </div>
                                         <!-- /.card-body -->
                                         <div class="card-footer">
-                                            <button type="submit" id="btn_save_tans"
-                                                class="btn btn-info full-width">Save</button>
-                                            <a href="<?php echo base_url()?>dashboard" type="button"
-                                                class="btn btn-default float-right">Cancel</a>
+                                            <button type="submit" id="btn_save_tans" class="btn btn-info full-width">Save</button>
+                                            <a href="<?php echo base_url() ?>dashboard" type="button" class="btn btn-default float-right">Cancel</a>
                                         </div>
                                         <!-- /.card-footer -->
                                     </div>

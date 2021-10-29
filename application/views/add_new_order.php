@@ -35,7 +35,7 @@
                                 <label for="inputEmail3" class="col-md-4 col-form-label">Order ID</label>
                                 <div class="col-md-8">
                                     <input type="text" class="form-control" id="order_id" placeholder=""
-                                        name="order_id">
+                                        name="order_id"  value="<?php echo $order_id ?>">
                                 </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                     <div class="col-md-8">
                                         <select id="supplier_id" class="form-control">
                                             <?php foreach ($suppliers->result() as $supplier) { ?>
-                                            <option value="<?php echo $supplier->id ?>">
+                                            <option value="<?php echo $supplier->supplier_id ?>">
                                                 <?php echo $supplier->supplier_id.'-'.$supplier->supplier_name ?>
                                             </option>
                                             <?php } ?>

@@ -357,15 +357,28 @@ if($this->input->get('stock_id')){
         $this->load->view('top_header');
         $this->load->view('side_menu');
 
+        // $param_data["item_code"] = $this->input->get('item_code');
+       
+
         $data["inv_number"] = $this->mmodel->generate_invoice_number();
         $data["items"] = $this->mmodel->get_item_list();
-        $data["stocks"] = $this->mmodel->get_all('stock');
+        // $data["stocks"] = $this->mmodel->get_all('stock');
+        // $data["stocks"] = $this->mmodel->get_stock_list_by_item($this->input->get('item_code'));
+        
+        
 
         $data["inv_date"] = date('Y-m-d');
 
         $this->load->view('salestransaction', $data);
         $this->load->view('footer');
         $this->load->view('js/salestransactionsjs');
+    }
+
+    public function get_stocks_for_item(){
+        $data = $this->mmodel->get_stock_list_by_item($this->input->get('item_code'));
+
+        echo json_encode($data);
+
     }
 
     public function salesreport()
@@ -443,12 +456,46 @@ if($this->input->get('stock_id')){
         echo json_encode($data);
     }
 
+    public function save_order()
+    {
+        $order['order_id'] = $this->input->post('order_id');
+        $order['order_date'] = $this->input->post('order_date');
+
+        
+        $approve['supplier_id'] = $this->input->post('supplier_id');
+       
+
+        $item_list = json_decode($this->input->post('item_list'));
+
+        $line_records = [];
+
+        foreach ($item_list as $item) {
+            $line['item_code'] = $item[0];
+            $line['item_qty'] = $item[1];
+            // $line['discount'] = $item[2];
+            // $line['item_qty'] = $item[3];
+            // $line['total_price'] = $item[4];
+            $line_records[] = $line;
+        }
+
+        $data['status'] = 0;
+
+        $trans_id = $this->mmodel->save_transaction($order, $line_records);
+
+        if ($trans_id) {
+            $data['status'] = 1;
+            $data['trans_id'] = $trans_id;
+        }
+
+        echo json_encode($data);
+    }
 
     public function get_item_details()
     {
         $item_code = $this->input->get('item_code');
+        $stock_id = $this->input->get('stock_id');
 
-        $item_details = $this->mmodel->get_item_details_for_transaction($item_code);
+        $item_details = $this->mmodel->get_item_details_for_transaction($item_code,$stock_id);
 
         echo json_encode($item_details->row());
 
@@ -598,8 +645,9 @@ if($this->input->get('stock_id')){
         $this->load->view('side_menu');
 
         $data["items"] = $this->mmodel->get_all('item_master');
-        $data["unit_types"] = $this->mmodel->get_all('unit_types');
+        //$data["unit_types"] = $this->mmodel->get_all('unit_types');
         $data["suppliers"] = $this->mmodel->get_all('suppliers');
+        $data["order_id"] = $this->mmodel->generate_order_number();
         $data["msg"] = $msg;
         $data["alert_type"] = $alert_type;
 
@@ -634,8 +682,9 @@ if($this->input->get('stock_id')){
         $this->load->view('side_menu');
 
        // $data["skus"] = $this->mmodel->get_all('item_sku');
-        $data["unit_types"] = $this->mmodel->get_all('unit_types');
+        // $data["unit_types"] = $this->mmodel->get_all('unit_types');
         $data["suppliers"] = $this->mmodel->get_all('suppliers');
+        $data["stocks"] = $this->mmodel->get_all('stock');
         $data["msg"] = $msg;
         $data["alert_type"] = $alert_type;
 

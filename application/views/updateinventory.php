@@ -142,8 +142,9 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                           
-                                            <button type="button" class="btn btn-secondary">Cancel</button>
+                                        <a href="<?php echo base_url()?>add_stock" type="button"
+                                        class="btn btn-secondary">Cancel</a>
+                                            <!-- <button type="button" class="btn btn-secondary">Cancel</button> -->
                                             <button type="submit" class="btn btn-secondary">Save</button>
                                         </div>
 

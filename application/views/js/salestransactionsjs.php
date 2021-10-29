@@ -69,6 +69,7 @@
                 $cusAddress2: $("#address_line_2"),
                 $cusAddress3: $("#address_line_3"),
                 $cusTel: $("#cus_tel"),
+                $stockId: $("#stock_id"),
 
                 $grossTotal: 0,
                 $qtyTotal: 0,
@@ -84,6 +85,10 @@
                     this.$btnAdd.on("click", function (e) {
                         e.preventDefault();
                         context.addNewTranRecord();
+                    });
+                    this.$item_code.on("change", function (e) {
+                        e.preventDefault();
+                        context.getStockDetails();
                     });
                     this.$btnSaveTans.on("click", function (e) {
                         e.preventDefault();
@@ -118,9 +123,30 @@
                     loadingWidget.show();
                     const context = this;
                     $.get(
-                        baseUrl + "get_item_details?item_code=" + context.$item_code.val(),
+                        baseUrl + "get_item_details?item_code=" + context.$item_code.val() + "&stock_id=" + context.$stockId.val(),
                         function (res) {
                             context.addNewRecord($.parseJSON(res));
+                        }
+                    ).fail(function (error) {
+                        console.log("error", error);
+                        loadingWidget.hide();
+                    });
+                },
+                getStockDetails: function () {
+                    var item_code = document.getElementById("item_code").value;
+                    loadingWidget.show();
+                    $('#stock_id').children().remove();
+                    $.get(
+                        baseUrl + "get_stocks_for_item?item_code=" + item_code,
+                        function (res) {
+                            res = $.parseJSON(res);
+                            $.each(res, ( key, value ) => {
+                                $('#stock_id').append(
+                                    $('<option>',{value: value.stock_id,text: value.stock_id})
+                                )
+                            })
+
+                            loadingWidget.hide();
                         }
                     ).fail(function (error) {
                         console.log("error", error);

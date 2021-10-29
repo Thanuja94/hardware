@@ -180,7 +180,7 @@ class MModel extends CI_Model
         return $result;
     }
 
-    public function get_item_details_for_transaction($item_code)
+    public function get_item_details_for_transaction($item_code,$stock_id)
     {
 
         return $this->db->query("
@@ -198,7 +198,7 @@ class MModel extends CI_Model
                         ON 
                             im.id = i.item_id 
                             
-                    WHERE im.item_code='$item_code'
+                    WHERE im.item_code='$item_code' and i.stock_id = '$stock_id'
         ");
     }
 
@@ -366,11 +366,50 @@ class MModel extends CI_Model
         return false;
         
     }
+    public function save_order($order, $line_records,$customer)
+    {
+
+        if($this->db->insert('order', $order)){
+            $order_id = $this->db->insert_id();
+            $header['order_id'] = $order_id;
+
+            if ($this->db->insert('approve', $header)) {
+                $invoice_id = $this->db->insert_id();
+    
+                foreach ($line_records as $lines) {
+                    $lines['invoice_id'] = $invoice_id;
+                    $this->db->insert('item_include_on_order', $lines);
+                }
+                return $invoice_id;
+                
+                
+            }   
+        }
+       
+       
+        return false;
+        
+    }
 
     public function get_sku_list($param)
     {
 
         return $this->db->query("select * from item_sku where sku_code like '%$param%' OR sku_name like '%$param%'");
+    }
+
+    public function get_stock_list_by_item($item_code)
+    {
+
+        return $this->db->query("select distinct
+        stock_id 
+        FROM 
+        item_add_on_stock AS itstock 
+        INNER JOIN 
+        item_master AS im 
+        ON 
+        itstock.item_id = im.id
+        
+        WHERE im.item_code = '$item_code'")->result();
     }
 
     public function get_salesHistory_table($param_data)

@@ -57,6 +57,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Supplier ID</th>
                                 <th>Supplier Name</th>
                                 <th>Address</th>
                                 <th>Contact</th>
@@ -68,6 +69,7 @@
                             <?php foreach ($suppliers->result() as $supplier) { ?>
                             <tr>
                                 <td><?php echo $supplier->id ?></td>
+                                <td><?php echo $supplier->supplier_id ?></td>
                                 <td><?php echo $supplier->supplier_name ?></td>
                                 <td><?php echo $supplier->address_line_3 ?></td>
                                 <td><?php echo $supplier->sup_tel_no ?></td>

@@ -431,6 +431,8 @@ if($this->input->get('stock_id')){
         $customer['address_line_3'] = $this->input->post('address_line_3');
         $customer['cus_tel'] = $this->input->post('cus_tel');
 
+        // $stocks_rec['stock_id'] = $this->input->post('stock_id');
+
         $item_list = json_decode($this->input->post('item_list'));
 
         $line_records = [];
@@ -441,6 +443,7 @@ if($this->input->get('stock_id')){
             $line['discount'] = $item[2];
             $line['item_qty'] = $item[3];
             $line['total_price'] = $item[4];
+            $line['stock_id'] = $item[5];
             $line_records[] = $line;
         }
 

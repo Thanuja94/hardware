@@ -189,6 +189,7 @@ class MModel extends CI_Model
                         im.item_name, 
                         im.unit_type, 
                         im.item_group,
+                        i.stock_id,
                         i.selling_price
                     FROM
                         item_master AS im
@@ -354,7 +355,14 @@ class MModel extends CI_Model
     
                 foreach ($line_records as $lines) {
                     $lines['invoice_id'] = $invoice_id;
+                    
+                    
+                    $stocks['stock_id'] = $lines['stock_id'];
+                    $stocks['invoice_id'] = $header['invoice_id'];
+
+                    unset($lines['stock_id']);
                     $this->db->insert('item_include_on_invoice', $lines);
+                    $this->db->insert('stock_include_on_invoice', $stocks);
                 }
                 return $invoice_id;
                 

@@ -178,6 +178,7 @@
                                                 <th>Item Code</th>
                                                 <th>Item Name</th>
                                                 <th>Item Group</th>
+                                                <th>Stock</th>
                                                 <th>Unit Price (Rs)</th>
                                                 <th>Type</th>
                                                 <th>Sales Qty</th>

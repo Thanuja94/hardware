@@ -16,6 +16,7 @@
     };
 
     var myTableArray = [];
+    var myStockTableArray = [];
 
     let rowCount = 0;
 
@@ -185,6 +186,7 @@
                         `<td class='item_code'>` + data.item_code + `</td>` +
                         `<td>` + data.item_name + `</td>` +
                         `<td>` + data.item_group + `</td>` +
+                        `<td class='stock_id'>` + data.stock_id + `</td>` +
                         `<td class='selling_price'>` + data.selling_price + `</td>` +
                         `<td>` + data.unit_type + `</td>` +
                         `<td class='qty'>` + qty + `</td>` +
@@ -211,13 +213,17 @@
 
                     $('#example1 tbody tr').each(function() {
                         var arrayOfThisRow = [];
+                        
 
-                        arrayOfThisRow[0] = $(this).find(".item_code").html();
+                        arrayOfThisRow[0] = $(this).find(".item_code").html();                   
                         arrayOfThisRow[1] = $(this).find(".selling_price").html();
                         arrayOfThisRow[2] = $(this).find(".discount_pct").html();
                         arrayOfThisRow[3] = $(this).find(".qty").html();
                         arrayOfThisRow[4] = $(this).find(".total_value").html();
+                        arrayOfThisRow[5] = $(this).find(".stock_id").html();
                         myTableArray.push(arrayOfThisRow);
+
+                       
                     });
 
                     $.post(
@@ -235,6 +241,7 @@
                             tax_amt: this.$txt_tax_amt.val(),
                             total_discount: this.$txt_total_discount.val(),
                             net_total: this.$txt_net_total.val(),
+                            stock_id: this.$stockId.val(),
                             item_list: JSON.stringify(myTableArray)
                         },
                         function (result) {

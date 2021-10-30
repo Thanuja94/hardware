@@ -92,7 +92,7 @@ function removeRecord(itemCode) {
                             confirmButtonText: 'Yes, Save it!'
                         }).then((result) => {
                             if (result.value) {
-                                context.saveTranRecords();
+                                context.saveOrderRecords();
                             }
                         })
                     } else {
@@ -175,7 +175,7 @@ function removeRecord(itemCode) {
                 this.$item_qty.val('');
                 // this.$item_discount.val('');
             },
-            saveTranRecords: function() {
+            saveOrderRecords: function() {
 
                 $('#example1 tbody tr').each(function() {
                     var arrayOfThisRow = [];

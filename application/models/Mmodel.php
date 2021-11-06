@@ -374,24 +374,24 @@ class MModel extends CI_Model
         return false;
         
     }
-    public function save_order($order, $line_records,$customer)
+    public function save_order($order, $line_records,$approve)
     {
 
         if($this->db->insert('order', $order)){
             $order_id = $this->db->insert_id();
-            $header['order_id'] = $order_id;
+            $order_no= $order['order_id'];
 
-            if ($this->db->insert('approve', $header)) {
-                $invoice_id = $this->db->insert_id();
+            $this->db->insert('approve', $approve);
     
                 foreach ($line_records as $lines) {
-                    $lines['invoice_id'] = $invoice_id;
-                    $this->db->insert('item_include_on_order', $lines);
+                    $lines['order_id'] = $order_no;
+                    $this->db->insert('order_details', $lines);
                 }
-                return $invoice_id;
+
+                return $order_id;
                 
                 
-            }   
+             
         }
        
        

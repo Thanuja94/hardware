@@ -83,6 +83,7 @@ $route['purchase_order_report'] = 'dashboard/purchase_order_report';
 $route['add_new_grn'] = 'dashboard/add_new_grn';
 $route['add_stock'] = 'dashboard/add_stock';
 $route['get_stocks_for_item'] = 'dashboard/get_stocks_for_item';
+$route['save_order'] = 'dashboard/save_order';
 
 
 // need to remove

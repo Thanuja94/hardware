@@ -466,7 +466,7 @@ if($this->input->get('stock_id')){
 
         
         $approve['supplier_id'] = $this->input->post('supplier_id');
-       
+        $approve['order_id'] = $this->input->post('order_id');
 
         $item_list = json_decode($this->input->post('item_list'));
 
@@ -483,7 +483,7 @@ if($this->input->get('stock_id')){
 
         $data['status'] = 0;
 
-        $trans_id = $this->mmodel->save_transaction($order, $line_records);
+        $trans_id = $this->mmodel->save_order($order, $line_records,$approve);
 
         if ($trans_id) {
             $data['status'] = 1;

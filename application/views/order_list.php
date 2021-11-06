@@ -51,6 +51,23 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
+						<tbody>
+                            <?php foreach ($orders->result() as $order) { ?>
+                            <tr>
+                                <td><?php echo $order->id ?></td>
+                                <td><?php echo $order->order_id ?></td>
+								<td><?php echo $order->order_date ?></td>
+                                <td><?php echo $order->supplier_id ?></td>
+								<!-- <td><?php echo $order->status ?></td> -->
+								<td> <span class="right badge <?php echo $order->status == 0 ? "badge-warning" : (($order->status == 1) ? "badge-success" : "badge-danger") ?>"><?php echo $order->status == 0 ? "Pending" : (($order->status == 1) ? "Approved" : "Reject") ?></span> </td>
+								<td><span class="fa fa-pen" onclick="alert();"></span></td> 
+                               
+                                
+                                           
+                            </tr>
+
+                            <?php } ?>
+                        </tbody>
                     </table>
 				</div>
 				<!-- /.card-body -->

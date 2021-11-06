@@ -220,6 +220,25 @@ class MModel extends CI_Model
     }
 
 
+    public function get_order_list()
+    {
+
+        return $this->db->query("
+        SELECT 
+            ordr.id,
+		    ordr.order_id, 
+		    date(ordr.order_date) AS order_date, 
+		    apr.supplier_id,
+            apr.`status`
+        FROM 
+		    `hardware`.`order` AS ordr
+        INNER JOIN 
+		    approve AS apr 
+        ON
+	        ordr.order_id = apr.order_id
+        ");
+    }
+
     public function generate_invoice_number()
     {
         $invoice_number = "";

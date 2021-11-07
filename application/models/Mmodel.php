@@ -239,6 +239,14 @@ class MModel extends CI_Model
         ");
     }
 
+    public function update_order_status($status,$order_id)
+    {
+
+        return $this->db->query("
+        UPDATE `hardware`.`approve` SET `status` = '$status' WHERE `order_id` = '$order_id'
+        ");
+    }
+
     public function generate_invoice_number()
     {
         $invoice_number = "";

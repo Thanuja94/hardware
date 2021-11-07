@@ -380,6 +380,23 @@ if($this->input->get('stock_id')){
         echo json_encode($data);
 
     }
+    public function update_order_status_approve(){
+        $order_id =  $this->input->get('order_id');
+        
+        $this->mmodel->update_order_status('1',$order_id);
+        $this->order_list();
+
+        
+
+    }
+    public function update_order_status_reject(){
+        $order_id =  $this->input->get('order_id');
+        $this->mmodel->update_order_status('2',$order_id);
+        $this->order_list();
+
+        
+
+    }
 
     public function salesreport()
     {

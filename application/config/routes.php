@@ -86,7 +86,7 @@ $route['get_stocks_for_item'] = 'dashboard/get_stocks_for_item';
 $route['save_order'] = 'dashboard/save_order';
 $route['update_order_status_approve'] = 'dashboard/update_order_status_approve';
 $route['update_order_status_reject'] = 'dashboard/update_order_status_reject';
-
+$route['get_items_for_stocks'] = 'dashboard/get_items_for_stocks';
 
 
 // need to remove
@@ -95,3 +95,4 @@ $route['edit_supplier'] = 'dashboard/edit_supplier';
 //ajax routes
 $route['get_item_details'] = 'dashboard/get_item_details';
 $route['get_item_details_for_order'] = 'dashboard/get_item_details_for_order';
+$route['get_item_details_for_grn'] = 'dashboard/get_item_details_for_grn';

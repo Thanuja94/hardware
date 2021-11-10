@@ -219,6 +219,28 @@ class MModel extends CI_Model
         ");
     }
 
+    public function get_item_details_for_new_grn($item_code,$stock_id)
+    {
+
+        return $this->db->query("
+                SELECT 
+                    s.stock_id,
+                    i.item_code,
+                    i.item_name,
+                    i.item_group
+                    
+                FROM
+                    item_master as i
+                INNER JOIN
+                    item_add_on_stock as s
+                ON
+                    i.id = s.item_id
+                WHERE
+                i.item_code = '$item_code' AND
+                s.stock_id = '$stock_id'
+        ");
+    }
+
 
     public function get_order_list()
     {
@@ -322,6 +344,32 @@ class MModel extends CI_Model
 
         return $order_number;
     }
+
+    public function generate_grn_number()
+    {
+        $grn_number = "";
+
+        $this->db->select("id");
+        $this->db->from("grn");
+        $this->db->limit(1);
+        $this->db->order_by('id', "DESC");
+        $result = $this->db->get();
+        if ($result->num_rows() == 0)
+            $rowcount = 0;
+        else {
+            $rowcount = $result->row()->id;
+        }
+        $rowcount++;
+        if ($rowcount < 10) $grn_number = "GRN0000" . $rowcount;
+        else if ($rowcount < 100) $grn_number = "GRN000" . $rowcount;
+        else if ($rowcount < 1000) $grn_number = "GRN00" . $rowcount;
+        else if ($rowcount < 10000) $grn_number = "GRN0" . $rowcount;
+        else $grn_number = "GRN" . $grn_number;
+
+
+        return $grn_number;
+    }
+
     public function generate_item_number()
     {
         $invoice_number = "";
@@ -445,6 +493,24 @@ class MModel extends CI_Model
         itstock.item_id = im.id
         
         WHERE im.item_code = '$item_code'")->result();
+    }
+
+    public function get_item_list_by_stock($stock_id)
+    {
+
+        return $this->db->query("SELECT 
+        i.item_code,
+        i.item_name,
+        i.item_group
+        
+        FROM
+        item_master as i
+        INNER JOIN
+        item_add_on_stock as s
+        ON
+        i.id = s.item_id
+        WHERE
+        s.stock_id = '$stock_id'")->result();
     }
 
     public function get_salesHistory_table($param_data)

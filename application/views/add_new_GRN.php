@@ -47,22 +47,23 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="col-md-4">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-4 col-form-label">Supplier Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="sup_name" placeholder=""
-                                            name="sup_name">
-                                    </div>
-                                </div>
-                            </div> -->
+                            
 
                             <div class="col-md-4">
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label">Delivered Date</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="delivered_date" placeholder=""
+                                        <input type="date" class="form-control" id="delivered_date" placeholder=""
                                             name="delivered_date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-4 col-form-label">GRN ID</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="grn_id" placeholder=""
+                                            name="grn_id"  value="<?php echo $grn_id ?>">
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +80,7 @@
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-md-2 col-form-label"> Comments</label>
                                 <div class="col-md-8">
-                                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                    <textarea class="form-control" id="comments" rows="3" placeholder="Enter ..."></textarea>
 
                                 </div>
                             </div>
@@ -114,8 +115,9 @@
                                     <label for="inputEmail3" class="col-md-4 col-form-label"> Stock ID</label>
                                     <div class="col-md-8">
                                     <select class="form-control" id="stock_id">
+                                    <option value="">Select Stock</option>
                                                 <?php foreach ($stocks->result() as $stock) { ?>
-                                                    <option value="<?php echo $stock->id ?>"><?php echo $stock->stock_id ?>
+                                                    <option value="<?php echo $stock->stock_id ?>"><?php echo $stock->stock_id ?>
                                                     </option>
                                                 <?php } ?>
                                                      
@@ -127,7 +129,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <select id="item_code" class="form-control select2bs4">
-                                            <option>ITM-032</option>
+                                           
                                         </select>
                                     </div>
                                 </div>
@@ -164,8 +166,9 @@
                                         <th>Stock ID</th>
                                         <th>Item Code</th>
                                         <th>Item Name</th>
-                                        <th>Item Brand</th>
+                                        <th>Item Group</th>
                                         <th>Delivered QTY</th>
+                                        <th>Action</th>
 
 
                                     </tr>
@@ -185,7 +188,7 @@
                             <div class="form-horizontal">
                                 <div class="card-body">
 
-                                    <button type="submit" id="btn_save_tans" class="btn btn-info full-width">Save
+                                    <button type="submit" id="btn_save_grn" class="btn btn-info full-width">Save
                                         GRN</button>
                                     <a href="<?php echo base_url()?>GRN" type="button"
                                         class="btn btn-default float-right">Cancel</a>

@@ -134,7 +134,7 @@
                                         <th>Item Name</th>
                                         <th>Item Group</th>
                                         <th>Item QTY</th>
-
+                                        <th>Action</th>
 
                                     </tr>
                                 </thead>

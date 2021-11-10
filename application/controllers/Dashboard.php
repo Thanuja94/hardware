@@ -380,6 +380,14 @@ if($this->input->get('stock_id')){
         echo json_encode($data);
 
     }
+
+    public function get_items_for_stocks(){
+        $data = $this->mmodel->get_item_list_by_stock($this->input->get('stock_id'));
+
+        echo json_encode($data);
+
+    }
+
     public function update_order_status_approve(){
         $order_id =  $this->input->get('order_id');
         
@@ -526,6 +534,17 @@ if($this->input->get('stock_id')){
         $item_code = $this->input->get('item_code');
 
         $item_details = $this->mmodel->get_item_details_for_new_order($item_code);
+
+        echo json_encode($item_details->row());
+
+    }
+
+    public function get_item_details_for_grn()
+    {
+        $item_code = $this->input->get('item_code');
+        $stock_id = $this->input->get('stock_id');
+
+        $item_details = $this->mmodel->get_item_details_for_new_grn($item_code,$stock_id);
 
         echo json_encode($item_details->row());
 
@@ -705,12 +724,13 @@ if($this->input->get('stock_id')){
         // $data["unit_types"] = $this->mmodel->get_all('unit_types');
         $data["suppliers"] = $this->mmodel->get_all('suppliers');
         $data["stocks"] = $this->mmodel->get_all('stock');
+        $data["grn_id"] = $this->mmodel->generate_grn_number();
         $data["msg"] = $msg;
         $data["alert_type"] = $alert_type;
 
         $this->load->view('add_new_GRN',$data);
         $this->load->view('footer');
-       // $this->load->view('js/item_createjs');
+        $this->load->view('js/add_new_GRNjs');
     }
 
 

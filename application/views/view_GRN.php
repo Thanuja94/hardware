@@ -50,14 +50,34 @@
                             <tr>
                                 <th>#</th>
                                 <th>GRN ID</th>
-                                <th>Stock ID</th>
+                                <th>Supplier ID</th>
                                 <th>Delivered Date</th>
-                                <th>Delivered QTY</th>
+                                <!-- <th>Delivered QTY</th> -->
                                 <th>Comments</th>
                                 <th>Received By</th>
 
                             </tr>
                         </thead>
+                        <tbody>
+                            <?php foreach ($grns->result() as $grn) { ?>
+                            <tr>
+                                <td><?php echo $grn->id ?></td>
+                                <td><?php echo $grn->GRN_id ?></td>
+                                <td><?php echo $grn->supplier_id ?></td>
+                                <td><?php echo $grn->delivered_date ?></td>
+                                <td><?php echo $grn->comments ?></td>
+                                <td><?php echo $grn->received_by ?></td>
+                                
+                                <!-- <td><?php echo $order->status ?></td> -->
+                                
+
+
+                                <!-- onclick="alert();"  -->
+
+                            </tr>
+
+                            <?php } ?>
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -72,7 +92,7 @@
     <!-- /.content-wrapper -->
 
 
-    <div class="modal fade" id="modal-default">
+    <!-- <div class="modal fade" id="modal-default">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -166,4 +186,4 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->

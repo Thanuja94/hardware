@@ -619,15 +619,14 @@ if($this->input->get('stock_id')){
         $this->load->view('top_header');
         $this->load->view('side_menu');
 
-        //$data["skus"] = $this->mmodel->get_all('item_sku');
-        $data["unit_types"] = $this->mmodel->get_all('unit_types');
-        $data["suppliers"] = $this->mmodel->get_all('suppliers');
+        
+        $data["grns"] = $this->mmodel->get_all('grn');
         $data["msg"] = $msg;
         $data["alert_type"] = $alert_type;
 
         $this->load->view('view_GRN',$data);
         $this->load->view('footer');
-       // $this->load->view('js/item_createjs');
+       
     }
 
     public function delivery_note($msg = "", $alert_type = "alert-success")

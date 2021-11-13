@@ -473,6 +473,30 @@ class MModel extends CI_Model
         return false;
         
     }
+    public function save_grn($grn, $line_records)
+    {
+
+        if($this->db->insert('grn', $grn)){
+            $id = $this->db->insert_id();
+            $grn_id= $grn['grn_id'];
+
+            
+    
+                foreach ($line_records as $lines) {
+                    $lines['grn_id'] = $grn_id;
+                    $this->db->insert('grn_details', $lines);
+                }
+
+                return $id;
+                
+                
+             
+        }
+       
+       
+        return false;
+        
+    }
 
     public function get_sku_list($param)
     {

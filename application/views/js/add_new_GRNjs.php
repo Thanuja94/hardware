@@ -39,18 +39,18 @@ function removeRecord(itemCode) {
             $btnRemove: $("#btn_add"),
             $btn_save_grn: $("#btn_save_grn"),
 
+            $grn_id: $("#grn_id"),
+            $supplier_id: $("#supplier_id"),
+            $delivered_date: $("#delivered_date"),
+
+            $comments: $("#comments"),
+            $received_by: $("#received_by"),
 
             $stock_id: $("#stock_id"),
             $item_code: $("#item_code"),
             $item_qty: $("#item_qty"),
 
             $table: $("#example1"),
-
-            $grn_id: $("#grn_id"),
-            $supplier_id: $("#supplier_id"),
-            $delivered_date: $("#delivered_date"),
-            $comments: $("#comments"),
-
 
 
             $spinner: $("#loader"),
@@ -68,7 +68,7 @@ function removeRecord(itemCode) {
                         e.preventDefault();
                         context.getItems();
                     });
-                this.$btn_save_order.on("click", function(e) {
+                this.$btn_save_grn.on("click", function(e) {
                     e.preventDefault();
 
                     if ($('#example1 tbody tr').length > 0) {
@@ -81,7 +81,7 @@ function removeRecord(itemCode) {
                             confirmButtonText: 'Yes, Save it!'
                         }).then((result) => {
                             if (result.value) {
-                                context.saveOrderRecords();
+                                context.saveGrnRecords();
                             }
                         })
                     } else {
@@ -146,7 +146,7 @@ function removeRecord(itemCode) {
 
                 this.$table.append(
                     `<tr class='data_row' id='item` + rowCount + `' >` +
-                    `<td>` + data.stock_id + `</td>` +
+                    `<td class='stock_id'>` + data.stock_id + `</td>` +
                     `<td class='item_code'>` + data.item_code + `</td>` +
                     `<td>` + data.item_name + `</td>` +
                     `<td>` + data.item_group + `</td>` +
@@ -164,14 +164,15 @@ function removeRecord(itemCode) {
                 this.$item_qty.val('');
                
             },
-            saveOrderRecords: function() {
+            saveGrnRecords: function() {
 
                 $('#example1 tbody tr').each(function() {
                     var arrayOfThisRow = [];
 
+                    
                     arrayOfThisRow[0] = $(this).find(".item_code").html();
                     arrayOfThisRow[1] = $(this).find(".qty").html();
-                   
+                    arrayOfThisRow[2] = $(this).find(".stock_id").html();
                    
                     myTableArray.push(arrayOfThisRow);
                 });
@@ -179,8 +180,12 @@ function removeRecord(itemCode) {
                 $.post(
                     baseUrl + "save_grn", {
                        
+                       // stock_id: this.$stock_id.val(),
                         supplier_id: this.$supplier_id.val(),
-                      
+                        grn_id: this.$grn_id.val(),
+                        delivered_date: this.$delivered_date.val(),
+                        comments: this.$comments.val(),
+                        received_by: this.$received_by.val(),
                         item_list: JSON.stringify(myTableArray)
                     },
                     function(result) {
@@ -195,7 +200,7 @@ function removeRecord(itemCode) {
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href =
-                                        "<?php echo base_url()?>view_GRN" 
+                                        "<?php echo base_url()?>GRN" 
                                         
                                 }
                             })

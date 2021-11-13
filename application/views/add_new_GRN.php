@@ -89,8 +89,8 @@
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-md-4 col-form-label">Received By</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" id="sup_name" placeholder=""
-                                        name="sup_name">
+                                    <input type="text" class="form-control" id="received_by" placeholder=""
+                                        name="received_by">
                                 </div>
                             </div>
                         </div>

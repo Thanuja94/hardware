@@ -518,6 +518,42 @@ if($this->input->get('stock_id')){
         echo json_encode($data);
     }
 
+    public function save_grn()
+    {
+        $grn['grn_id'] = $this->input->post('grn_id');
+        $grn['delivered_date'] = $this->input->post('delivered_date');
+ 
+        $grn['supplier_id'] = $this->input->post('supplier_id');
+        $grn['comments'] = $this->input->post('comments');
+        $grn['received_by'] = $this->input->post('received_by');
+
+        $item_list = json_decode($this->input->post('item_list'));
+
+        $line_records = [];
+
+        foreach ($item_list as $item) {
+            
+            $line['item_code'] = $item[0];
+            $line['delivered_qty'] = $item[1];
+            $line['stock_id'] = $item[2];
+            // $line['discount'] = $item[2];
+            // $line['item_qty'] = $item[3];
+            // $line['total_price'] = $item[4];
+            $line_records[] = $line;
+        }
+
+        $data['status'] = 0;
+
+        $trans_id = $this->mmodel->save_grn($grn, $line_records);
+
+        if ($trans_id) {
+            $data['status'] = 1;
+            $data['trans_id'] = $trans_id;
+        }
+
+        echo json_encode($data);
+    }
+
     public function get_item_details()
     {
         $item_code = $this->input->get('item_code');

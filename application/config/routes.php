@@ -87,6 +87,7 @@ $route['save_order'] = 'dashboard/save_order';
 $route['update_order_status_approve'] = 'dashboard/update_order_status_approve';
 $route['update_order_status_reject'] = 'dashboard/update_order_status_reject';
 $route['get_items_for_stocks'] = 'dashboard/get_items_for_stocks';
+$route['save_grn'] = 'dashboard/save_grn';
 
 
 // need to remove

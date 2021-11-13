@@ -61,8 +61,17 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label">Invoice Date</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="inv_date" placeholder=""
+                                        <input type="date" class="form-control" id="inv_date" placeholder=""
                                             name="inv_date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-4 col-form-label">Supplier Invoice ID</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="sup_inv_id" placeholder=""
+                                            name="sup_inv_id" value="<?php echo $sup_inv_id ?>">
                                     </div>
                                 </div>
                             </div>

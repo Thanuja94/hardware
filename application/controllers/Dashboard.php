@@ -683,6 +683,9 @@ if($this->input->get('stock_id')){
         $data["suppliers"] = $this->mmodel->get_all('suppliers');
         $data["msg"] = $msg;
         $data["alert_type"] = $alert_type;
+        $data["sup_inv_id"] = $this->mmodel->generate_sup_inv_id();
+    
+
 
         $this->load->view('add_new_sup_invoice',$data);
         $this->load->view('footer');

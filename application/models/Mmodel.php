@@ -369,6 +369,30 @@ class MModel extends CI_Model
 
         return $grn_number;
     }
+    public function generate_sup_inv_id()
+    {
+        $sup_inv_id = "";
+
+        $this->db->select("id");
+        $this->db->from("sup_invoice");
+        $this->db->limit(1);
+        $this->db->order_by('id', "DESC");
+        $result = $this->db->get();
+        if ($result->num_rows() == 0)
+            $rowcount = 0;
+        else {
+            $rowcount = $result->row()->id;
+        }
+        $rowcount++;
+        if ($rowcount < 10) $sup_inv_id = "SINV0000" . $rowcount;
+        else if ($rowcount < 100) $sup_inv_id = "SINV000" . $rowcount;
+        else if ($rowcount < 1000) $sup_inv_id = "SINV00" . $rowcount;
+        else if ($rowcount < 10000) $sup_inv_id = "SINV0" . $rowcount;
+        else $sup_inv_id = "SINV" . $sup_inv_id;
+
+
+        return $sup_inv_id;
+    }
 
     public function generate_item_number()
     {

@@ -553,6 +553,44 @@ if($this->input->get('stock_id')){
 
         echo json_encode($data);
     }
+    public function save_sup_invoice()
+    {
+        $sup_inv['sup_inv_id'] = $this->input->post('sup_inv_id');
+        $sup_inv['invoice_date'] = $this->input->post('inv_date');
+ 
+        $sup_inv['supplier_id'] = $this->input->post('supplier_id');
+        $sup_inv['gross_total'] = $this->input->post('gross_total');
+        $sup_inv['net_total'] = $this->input->post('net_total');
+        $sup_inv['discount'] = $this->input->post('discount');
+
+        $item_list = json_decode($this->input->post('item_list'));
+
+        $line_records = [];
+
+        foreach ($item_list as $item) {
+            
+            $line['item_code'] = $item[0];
+            $line['stock_id'] = $item[1];
+            $line['unit_price'] = $item[2];
+            $line['item_qty'] = $item[3];
+            $line['total_price'] = $item[4];
+            // $line['discount'] = $item[2];
+            
+            
+            $line_records[] = $line;
+        }
+
+        $data['status'] = 0;
+
+        $trans_id = $this->mmodel->save_sup_invoice($sup_inv, $line_records);
+
+        if ($trans_id) {
+            $data['status'] = 1;
+            $data['trans_id'] = $trans_id;
+        }
+
+        echo json_encode($data);
+    }
 
     public function get_item_details()
     {

@@ -250,7 +250,7 @@ class MModel extends CI_Model
                     i.item_name,
                     i.item_group,
                     s.purchased_price
-                    
+
                 FROM
                     item_master as i
                 INNER JOIN
@@ -531,6 +531,30 @@ class MModel extends CI_Model
                 foreach ($line_records as $lines) {
                     $lines['grn_id'] = $grn_id;
                     $this->db->insert('grn_details', $lines);
+                }
+
+                return $id;
+                
+                
+             
+        }
+       
+       
+        return false;
+        
+    }
+    public function save_sup_invoice($sup_inv, $line_records)
+    {
+
+        if($this->db->insert('sup_invoice', $sup_inv)){
+            $id = $this->db->insert_id();
+            $sup_inv_id= $sup_inv['sup_inv_id'];
+
+            
+    
+                foreach ($line_records as $lines) {
+                    $lines['sup_inv_id'] = $sup_inv_id;
+                    $this->db->insert('sup_invoice_details', $lines);
                 }
 
                 return $id;

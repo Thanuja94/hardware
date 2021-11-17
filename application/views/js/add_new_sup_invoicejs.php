@@ -82,7 +82,7 @@ function removeRecord(itemCode) {
                             confirmButtonText: 'Yes, Save it!'
                         }).then((result) => {
                             if (result.value) {
-                                context.saveGrnRecords();
+                                context.saveSupInvoice();
                             }
                         })
                     } else {
@@ -161,7 +161,7 @@ function removeRecord(itemCode) {
                     `<td>` + data.item_name + `</td>` +
                     `<td>` + data.item_group + `</td>` +
                     `<td class='qty'>` + qty + `</td>` +
-                    `<td>` + data.purchased_price + `</td>` +
+                    `<td class='unit_price'>` + data.purchased_price + `</td>` +
                     `<td class='total_value'>` + total + `</td>` +
                     `<td> <button type='button' class = 'btn btn-danger'  onClick='removeRecord("` +
                     rowCount + `")'> <i class='fa fa-trash' aria-hidden='true'></i> </button>` +
@@ -176,28 +176,32 @@ function removeRecord(itemCode) {
                 this.$item_qty.val('');
 
             },
-            saveGrnRecords: function() {
+            saveSupInvoice: function() {
 
                 $('#example1 tbody tr').each(function() {
                     var arrayOfThisRow = [];
 
 
                     arrayOfThisRow[0] = $(this).find(".item_code").html();
-                    arrayOfThisRow[1] = $(this).find(".qty").html();
-                    arrayOfThisRow[2] = $(this).find(".stock_id").html();
+                    arrayOfThisRow[1] = $(this).find(".stock_id").html();
+                    arrayOfThisRow[2] = $(this).find(".unit_price").html();
+                    arrayOfThisRow[3] = $(this).find(".qty").html();
+                    arrayOfThisRow[4] = $(this).find(".total_value").html();
+                    
 
                     myTableArray.push(arrayOfThisRow);
                 });
 
                 $.post(
-                    baseUrl + "save_gr", {
+                    baseUrl + "save_sup_invoice", {
 
-                        stock_id: this.$stock_id.val(),
+                        //stock_id: this.$stock_id.val(),
                         supplier_id: this.$supplier_id.val(),
-                        grn_id: this.$grn_id.val(),
-                        delivered_date: this.$delivered_date.val(),
-                        comments: this.$comments.val(),
-                        received_by: this.$received_by.val(),
+                        sup_inv_id: this.$sup_inv_id.val(),
+                        inv_date: this.$inv_date.val(),
+                        gross_total: this.$gross_total.val(),
+                        net_total: this.$net_total.val(),
+                        discount: this.$discount.val(),
                         item_list: JSON.stringify(myTableArray)
                     },
                     function(result) {
@@ -212,7 +216,7 @@ function removeRecord(itemCode) {
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href =
-                                        "<?php echo base_url()?>GRN"
+                                        "<?php echo base_url()?>supplier_invoice"
 
                                 }
                             })

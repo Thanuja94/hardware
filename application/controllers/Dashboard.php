@@ -585,6 +585,16 @@ if($this->input->get('stock_id')){
         echo json_encode($item_details->row());
 
     }
+    public function get_item_details_for_sup_inv()
+    {
+        $item_code = $this->input->get('item_code');
+        $stock_id = $this->input->get('stock_id');
+
+        $item_details = $this->mmodel->get_item_details_for_new_sup_inv($item_code,$stock_id);
+
+        echo json_encode($item_details->row());
+
+    }
 
     public function suppliers($msg = "", $alert_type = "alert-success"){
         $object['controller'] = $this;
@@ -679,7 +689,7 @@ if($this->input->get('stock_id')){
         $this->load->view('side_menu');
 
         //$data["skus"] = $this->mmodel->get_all('item_sku');
-        $data["unit_types"] = $this->mmodel->get_all('unit_types');
+        $data["stocks"] = $this->mmodel->get_all('stock');
         $data["suppliers"] = $this->mmodel->get_all('suppliers');
         $data["msg"] = $msg;
         $data["alert_type"] = $alert_type;
@@ -689,7 +699,7 @@ if($this->input->get('stock_id')){
 
         $this->load->view('add_new_sup_invoice',$data);
         $this->load->view('footer');
-       // $this->load->view('js/item_createjs');
+       $this->load->view('js/add_new_sup_invoicejs');
     }
 
     public function order_list($msg = "", $alert_type = "alert-success")

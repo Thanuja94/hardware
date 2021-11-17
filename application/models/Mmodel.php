@@ -240,6 +240,28 @@ class MModel extends CI_Model
                 s.stock_id = '$stock_id'
         ");
     }
+    public function get_item_details_for_new_sup_inv($item_code,$stock_id)
+    {
+
+        return $this->db->query("
+                SELECT 
+                    s.stock_id,
+                    i.item_code,
+                    i.item_name,
+                    i.item_group,
+                    s.purchased_price
+                    
+                FROM
+                    item_master as i
+                INNER JOIN
+                    item_add_on_stock as s
+                ON
+                    i.id = s.item_id
+                WHERE
+                i.item_code = '$item_code' AND
+                s.stock_id = '$stock_id'
+        ");
+    }
 
 
     public function get_order_list()

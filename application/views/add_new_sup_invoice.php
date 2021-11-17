@@ -89,8 +89,8 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label">Gross Total</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="inv_date" placeholder=""
-                                            name="inv_date">
+                                        <input type="text" class="form-control" id="gross_total" placeholder=""
+                                            name="gross_total">
                                     </div>
                                 </div>
                             </div>
@@ -99,8 +99,8 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label">Discount</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="inv_date" placeholder=""
-                                            name="inv_date">
+                                        <input type="text" class="form-control" id="discount" placeholder=""
+                                            name="discount">
                                     </div>
                                 </div>
                             </div>
@@ -117,8 +117,8 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label">Net Total</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="inv_date" placeholder=""
-                                            name="inv_date">
+                                        <input type="text" class="form-control" id="net_total" placeholder=""
+                                            name="net_total">
                                     </div>
                                 </div>
                             </div>
@@ -139,10 +139,14 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label"> Stock ID</label>
                                     <div class="col-md-8">
-                                        <select class="form-control">
-                                            <option>STK-033</option>
-
-                                        </select>
+                                    <select class="form-control" id="stock_id">
+                                    <option value="">Select Stock</option>
+                                                <?php foreach ($stocks->result() as $stock) { ?>
+                                                    <option value="<?php echo $stock->stock_id ?>"><?php echo $stock->stock_id ?>
+                                                    </option>
+                                                <?php } ?>
+                                                     
+                                                </select>
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +154,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <select id="item_code" class="form-control select2bs4">
-                                            <option>ITM-032</option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -187,6 +191,7 @@
                                         <th>Item QTY</th>
                                         <th>Unit Price (Rs)</th>
                                         <th>Total Price (Rs)</th>
+                                        <th>Action</th>
 
                                     </tr>
                                 </thead>
@@ -207,7 +212,7 @@
                             <div class="form-horizontal">
                                 <div class="card-body">
 
-                                    <button type="submit" id="btn_save_tans" class="btn btn-info full-width">Save
+                                    <button type="submit" id="btn_save_sup_inv" class="btn btn-info full-width">Save
                                         Invoice</button>
                                     <a href="<?php echo base_url()?>supplier_invoice" type="button"
                                         class="btn btn-default float-right">Cancel</a>

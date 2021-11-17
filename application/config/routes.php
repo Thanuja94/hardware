@@ -97,3 +97,4 @@ $route['edit_supplier'] = 'dashboard/edit_supplier';
 $route['get_item_details'] = 'dashboard/get_item_details';
 $route['get_item_details_for_order'] = 'dashboard/get_item_details_for_order';
 $route['get_item_details_for_grn'] = 'dashboard/get_item_details_for_grn';
+$route['get_item_details_for_sup_inv'] = 'dashboard/get_item_details_for_sup_inv';

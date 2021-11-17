@@ -22,7 +22,7 @@ function removeRecord(itemCode) {
 
     let parentId = 'item' + itemCode;
 
-   
+
 
     $('#item' + itemCode).remove();
 
@@ -37,14 +37,15 @@ function removeRecord(itemCode) {
         const newOrderObj = {
             $btnAdd: $("#btn_add"),
             $btnRemove: $("#btn_add"),
-            $btn_save_grn: $("#btn_save_grn"),
+            $btn_save_sup_inv: $("#btn_save_sup_inv"),
 
-            $grn_id: $("#grn_id"),
+            $sup_inv_id: $("#sup_inv_id"),
             $supplier_id: $("#supplier_id"),
-            $delivered_date: $("#delivered_date"),
+            $inv_date: $("#inv_date"),
 
-            $comments: $("#comments"),
-            $received_by: $("#received_by"),
+            $gross_total: $("#gross_total"),
+            $discount: $("#discount"),
+            $net_total: $("#net_total"),
 
             $stock_id: $("#stock_id"),
             $item_code: $("#item_code"),
@@ -64,11 +65,11 @@ function removeRecord(itemCode) {
                     e.preventDefault();
                     context.addNewTranRecord();
                 });
-                this.$stock_id.on("change", function (e) {
-                        e.preventDefault();
-                        context.getItems();
-                    });
-                this.$btn_save_grn.on("click", function(e) {
+                this.$stock_id.on("change", function(e) {
+                    e.preventDefault();
+                    context.getItems();
+                });
+                this.$btn_save_sup_inv.on("click", function(e) {
                     e.preventDefault();
 
                     if ($('#example1 tbody tr').length > 0) {
@@ -101,7 +102,8 @@ function removeRecord(itemCode) {
                 loadingWidget.show();
                 const context = this;
                 $.get(
-                    baseUrl + "get_item_details_for_grn?item_code=" + context.$item_code.val() + "&stock_id=" +context.$stock_id.val(),
+                    baseUrl + "get_item_details_for_sup_inv?item_code=" + context.$item_code
+                    .val() + "&stock_id=" + context.$stock_id.val(),
                     function(res) {
                         context.addNewRecord($.parseJSON(res));
                     }
@@ -110,27 +112,30 @@ function removeRecord(itemCode) {
                     loadingWidget.hide();
                 });
             },
-            getItems: function () {
-                    var stock_id = document.getElementById("stock_id").value;
-                    loadingWidget.show();
-                    $('#item_code').children().remove();
-                    $.get(
-                        baseUrl + "get_items_for_stocks?stock_id=" + stock_id,
-                        function (res) {
-                            res = $.parseJSON(res);
-                            $.each(res, ( key, value ) => {
-                                $('#item_code').append(
-                                    $('<option>',{value: value.item_code,text: value.item_code})
-                                )
-                            })
+            getItems: function() {
+                var stock_id = document.getElementById("stock_id").value;
+                loadingWidget.show();
+                $('#item_code').children().remove();
+                $.get(
+                    baseUrl + "get_items_for_stocks?stock_id=" + stock_id,
+                    function(res) {
+                        res = $.parseJSON(res);
+                        $.each(res, (key, value) => {
+                            $('#item_code').append(
+                                $('<option>', {
+                                    value: value.item_code,
+                                    text: value.item_code
+                                })
+                            )
+                        })
 
-                            loadingWidget.hide();
-                        }
-                    ).fail(function (error) {
-                        console.log("error", error);
                         loadingWidget.hide();
-                    });
-                },
+                    }
+                ).fail(function(error) {
+                    console.log("error", error);
+                    loadingWidget.hide();
+                });
+            },
             addNewRecord: function(data) {
                 var total = 0;
                 var qty = 1;
@@ -140,9 +145,14 @@ function removeRecord(itemCode) {
 
                 ++rowCount;
 
-                
-                    qty = this.$item_qty.val();
-               
+                if (this.$item_qty.val() > 0) {
+                    total = data.purchased_price * this.$item_qty.val();
+                } else {
+                    total = data.purchased_price;
+                }
+
+                qty = this.$item_qty.val();
+
 
                 this.$table.append(
                     `<tr class='data_row' id='item` + rowCount + `' >` +
@@ -151,36 +161,38 @@ function removeRecord(itemCode) {
                     `<td>` + data.item_name + `</td>` +
                     `<td>` + data.item_group + `</td>` +
                     `<td class='qty'>` + qty + `</td>` +
+                    `<td>` + data.purchased_price + `</td>` +
+                    `<td class='total_value'>` + total + `</td>` +
                     `<td> <button type='button' class = 'btn btn-danger'  onClick='removeRecord("` +
                     rowCount + `")'> <i class='fa fa-trash' aria-hidden='true'></i> </button>` +
                     `</td>` +
                     +`<tr>`
                 )
 
-               
+
 
                 loadingWidget.hide();
 
                 this.$item_qty.val('');
-               
+
             },
             saveGrnRecords: function() {
 
                 $('#example1 tbody tr').each(function() {
                     var arrayOfThisRow = [];
 
-                    
+
                     arrayOfThisRow[0] = $(this).find(".item_code").html();
                     arrayOfThisRow[1] = $(this).find(".qty").html();
                     arrayOfThisRow[2] = $(this).find(".stock_id").html();
-                   
+
                     myTableArray.push(arrayOfThisRow);
                 });
 
                 $.post(
-                    baseUrl + "save_grn", {
-                       
-                       // stock_id: this.$stock_id.val(),
+                    baseUrl + "save_gr", {
+
+                        stock_id: this.$stock_id.val(),
                         supplier_id: this.$supplier_id.val(),
                         grn_id: this.$grn_id.val(),
                         delivered_date: this.$delivered_date.val(),
@@ -200,8 +212,8 @@ function removeRecord(itemCode) {
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href =
-                                        "<?php echo base_url()?>GRN" 
-                                        
+                                        "<?php echo base_url()?>GRN"
+
                                 }
                             })
                         }

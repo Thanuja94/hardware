@@ -55,6 +55,23 @@
                                 <th>Gross Total</th>
                             </tr>
                         </thead>
+						<tbody>
+                            <?php foreach ($invoices->result() as $invoice) { ?>
+                            <tr>
+                                <td><?php echo $invoice->id ?></td>
+                                <td><?php echo $invoice->sup_inv_id ?></td>
+                                <td><?php echo $invoice->supplier_id ?></td>
+                                <td><?php echo $invoice->invoice_date ?></td>
+								<td><?php echo number_format($invoice->net_total,2,'.',',')?></td> 
+								<td><?php echo number_format($invoice->discount,2,'.',',')?></td>                                                                
+								<td><?php echo number_format($invoice->gross_total,2,'.',',')?></td>
+
+                                <!-- onclick="alert();"  -->
+
+                            </tr>
+
+                            <?php } ?>
+                        </tbody>
                     </table>
 				</div>
 				

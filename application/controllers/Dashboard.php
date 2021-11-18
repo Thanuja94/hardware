@@ -301,6 +301,24 @@ if($this->input->get('stock_id')){
             $this->suppliers('Failed to Insert Supplier', 'alert-danger');
         }
     }
+    public function save_delivery_note($msg = "", $alert_type = "alert-success"){
+
+        $data['DN_id'] = $this->input->get_post('DN_id');
+        $data['supplier_id'] = $this->input->get_post('supplier_id');
+        $data['order_id'] = $this->input->get_post('order_id');
+        $data['item_qty'] = $this->input->get_post('item_qty');
+        $data['issue_date'] = $this->input->get_post('issue_date');
+        $data['delivery_date'] = $this->input->get_post('delivery_date');
+        // $data['supplier_id'] = $this->mmodel->generate_supplier_number();
+        // $data['last_modified_at'] = date('Y-m-d H:i:s');
+        // $data['last_modified_by'] = $this->session->userdata('name');
+
+        if ($this->mmodel->insert('delivery_note', $data)) {
+            $this->delivery_note('Delivery Note Added Successfully');
+        } else {
+            $this->delivery_note('Failed to Insert Delivery Note', 'alert-danger');
+        }
+    }
     public function invoicelist()
     {
         $object['controller'] = $this;
@@ -687,10 +705,14 @@ if($this->input->get('stock_id')){
         $this->load->view('side_menu');
 
        // $data["skus"] = $this->mmodel->get_all('item_sku');
-        $data["unit_types"] = $this->mmodel->get_all('unit_types');
+        //$data["unit_types"] = $this->mmodel->get_all('unit_types');
         $data["suppliers"] = $this->mmodel->get_all('suppliers');
         $data["msg"] = $msg;
         $data["alert_type"] = $alert_type;
+
+        $data["DN_id"] = $this->mmodel->generate_delivery_note_number();
+        $data["order_list"] = $this->mmodel->get_order_list_for_del_note();
+        
 
         $this->load->view('delivery_note_list',$data);
         $this->load->view('footer');

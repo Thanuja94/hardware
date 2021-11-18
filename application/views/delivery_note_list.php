@@ -30,6 +30,18 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
+
+                    <?php if ($msg) { ?>
+
+                    <div class="alert <?php echo $alert_type ?> alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                        <?php echo $msg ?>
+                    </div>
+
+                    <?php } ?>
                     <h3 class="card-title">Dilivery Note List &nbsp; &nbsp;
                         <button id="add_new_grn" class="btn btn-primary" data-toggle="modal"
                             data-target="#modal-default">
@@ -70,54 +82,59 @@
                     <h4 class="modal-title">Add New Delivery Note</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                 </div>
-                <form id="form_data" method="post"
-                    action="<?php echo base_url() ?>index.php/user/user/add_new_sys_user_page">
+                <form id="form_data" method="post" action="<?php echo base_url() ?>save_delivery_note">
                     <div class="modal-body">
 
                         <div class="row">
                             <div class="col-md-4">
 
                                 <div class="form-group">
-                                    <label>Supplier ID</label>
-                                    <select class="form-control">
-                                        <option>SUP-032</option>
+                                    <label>Delivery Note ID</label>
+                                    <input class="form-control input-rounded" name="DN_id" id="DN_id" placeholder=""
+                                        value="<?php echo $DN_id ?>">
+                                </div>
+                            </div>
 
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <li class="fa fa-user">&nbsp;&nbsp;</li>
-                                    <label for="input_username">Supplier Name</label>
-                                    <br />
-                                    <input class="form-control input-rounded" name="suppliername" id="input_username"
-                                        placeholder="Supllier Name" required="" type="text">
-                                </div>
-                            </div>
 
 
 
                         </div>
-
-
-
                         <div class="form-group">
                             <label>Order ID</label>
-                            <select class="form-control">
-                                <option>ORD-014</option>
+                            <select id="order_id" name="order_id" class="form-control">
+                                <?php foreach ($order_list->result() as $order) { ?>
+                                <option value="<?php echo $order->order_id ?>">
+                                    <?php echo $order->order_id ?>
+                                </option>
+                                <?php } ?>
 
                             </select>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-6">
 
+                                <div class="form-group">
+                                    <label>Supplier ID</label>
+                                    <select id="supplier_id" name="supplier_id" class="form-control">
+                                        <?php foreach ($suppliers->result() as $supplier) { ?>
+                                        <option value="<?php echo $supplier->supplier_id ?>">
+                                            <?php echo $supplier->supplier_id.'-'.$supplier->supplier_name ?>
+                                        </option>
+                                        <?php } ?>
 
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
 
                         <div class="form-group">
                             <li class="fa fa-calendar">&nbsp;&nbsp;</li>
                             <label for="input_username">Issue Date</label>
                             <br />
-                            <input class="form-control input-rounded" name="issue_date" id="issue_date"
-                                placeholder="" required="">
+                            <input class="form-control input-rounded" name="issue_date" id="issue_date" placeholder=""
+                                type="date" required="">
                         </div>
 
 
@@ -126,8 +143,8 @@
                             <li class="fa fa-calendar">&nbsp;&nbsp;</li>
                             <label for="input_username">Delivery Date</label>
                             <br />
-                            <input class="form-control input-rounded" name="deleivery_date" id="deleivery_date"
-                                placeholder="" required="">
+                            <input class="form-control input-rounded" name="delivery_date" id="delivery_date"
+                                placeholder="" type="date" required="">
                         </div>
 
 

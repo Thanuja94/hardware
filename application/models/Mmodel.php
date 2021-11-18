@@ -283,6 +283,19 @@ class MModel extends CI_Model
         ");
     }
 
+    public function get_order_list_for_del_note()
+    {
+
+        return $this->db->query("
+        SELECT order_id
+        FROM 
+        approve 
+        WHERE
+        `status` =1
+
+        ");
+    }
+
     public function update_order_status($status,$order_id)
     {
 
@@ -462,6 +475,29 @@ class MModel extends CI_Model
         else $stock_number = "STO" . $stock_number;
 
         return $stock_number;
+    }
+    public function generate_delivery_note_number()
+    {
+        $DN_number = "";
+
+        $this->db->select("id");
+        $this->db->from("delivery_note");
+        $this->db->limit(1);
+        $this->db->order_by('id', "DESC");
+        $result = $this->db->get();
+        if ($result->num_rows() == 0)
+            $rowcount = 0;
+        else {
+            $rowcount = $result->row()->id;
+        }
+        $rowcount++;
+        if ($rowcount < 10) $DN_number = "DN0000" . $rowcount;
+        else if ($rowcount < 100) $DN_number = "DN000" . $rowcount;
+        else if ($rowcount < 1000) $DN_number = "DN00" . $rowcount;
+        else if ($rowcount < 10000) $DN_number = "DN0" . $rowcount;
+        else $DN_number = "DN" . $DN_number;
+
+        return $DN_number;
     }
 
     public function save_transaction($header, $line_records,$customer)

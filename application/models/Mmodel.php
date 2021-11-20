@@ -124,11 +124,11 @@ class MModel extends CI_Model
                         item_master.item_code, 
                         item_master.item_name
                     FROM
-                    item_add_on_stock
+                    stock_details
                         INNER JOIN
                         item_master
                         ON 
-                        item_add_on_stock.item_id = item_master.id");
+                        stock_details.item_id = item_master.id");
 
         return $result;
     }
@@ -163,7 +163,7 @@ class MModel extends CI_Model
                                         sto.selling_price,
                                         sto.purchase_date 
                                     FROM
-                                    item_add_on_stock AS sto
+                                    stock_details AS sto
                                         INNER JOIN item_master AS im ON sto.item_id = im.id ";
 
         if (($param_data['from'] !=''))
@@ -195,7 +195,7 @@ class MModel extends CI_Model
                         item_master AS im
                         
                         INNER JOIN
-                        item_add_on_stock AS i
+                        stock_details AS i
                         ON 
                             im.id = i.item_id 
                             
@@ -232,7 +232,7 @@ class MModel extends CI_Model
                 FROM
                     item_master as i
                 INNER JOIN
-                    item_add_on_stock as s
+                stock_details as s
                 ON
                     i.id = s.item_id
                 WHERE
@@ -254,7 +254,7 @@ class MModel extends CI_Model
                 FROM
                     item_master as i
                 INNER JOIN
-                    item_add_on_stock as s
+                stock_details as s
                 ON
                     i.id = s.item_id
                 WHERE
@@ -630,7 +630,7 @@ class MModel extends CI_Model
         return $this->db->query("select distinct
         stock_id 
         FROM 
-        item_add_on_stock AS itstock 
+        stock_details AS itstock 
         INNER JOIN 
         item_master AS im 
         ON 
@@ -650,7 +650,7 @@ class MModel extends CI_Model
         FROM
         item_master as i
         INNER JOIN
-        item_add_on_stock as s
+        stock_details as s
         ON
         i.id = s.item_id
         WHERE
@@ -785,7 +785,7 @@ class MModel extends CI_Model
                 item_master AS im
                 
                 INNER JOIN
-                item_add_on_stock AS s
+                stock_details AS s
                 ON 
                     im.id = s.item_id 
             GROUP BY

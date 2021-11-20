@@ -38,7 +38,7 @@
            
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="inventoryreporttable" class="table table-bordered table-striped">
+              <table id="purchaseorderreporttable" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th style="text-aligh:left;">Item Code</th>

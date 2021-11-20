@@ -147,7 +147,7 @@ if($this->input->get('stock_id')){
         $data['last_modified_by'] = $this->session->userdata('name');
         $stock_id = $this->input->get_post('stock_id');
 
-        $res = $this->mmodel->insert('item_add_on_stock', $data);
+        $res = $this->mmodel->insert('stock_details', $data);
         if ($res) {
             $this->add_items_inventory('Items Added Successfully', 'alert-success', $stock_id);
         } else {
@@ -819,7 +819,7 @@ if($this->input->get('stock_id')){
         $data["purchased_data"] = $this->mmodel->get_purchased_order_report();
         $this->load->view('purchase_order_report',$data);
         $this->load->view('footer');
-        $this->load->view('js/inventoryreportjs');
+        $this->load->view('js/purchaseorderreportjs');
     }
 
     public function add_new_grn($msg = "", $alert_type = "alert-success")

@@ -61,9 +61,27 @@
                                 <th>issue Date</th>
                                 <th>Delivery Date</th>
                                 <th>Item Qty</th>
-
+                                
                             </tr>
                         </thead>
+                        <tbody>
+                            <?php foreach ($deliveries->result() as $delivery) { ?>
+                            <tr>
+                                <td><?php echo $delivery->id ?></td>
+                                <td><?php echo $delivery->DN_id ?></td>
+                                <td><?php echo $delivery->supplier_id ?></td>
+                                <td><?php echo $delivery->order_id ?></td>
+                                <td><?php echo $delivery->issue_date ?></td>
+                                <td><?php echo $delivery->delivery_date ?></td>
+                                <td><?php echo $delivery->item_qty ?></td>
+								
+
+                                <!-- onclick="alert();"  -->
+
+                            </tr>
+
+                            <?php } ?>
+                        </tbody>
                     </table>
                 </div>
 

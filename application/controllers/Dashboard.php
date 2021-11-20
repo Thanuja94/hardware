@@ -712,6 +712,7 @@ if($this->input->get('stock_id')){
 
         $data["DN_id"] = $this->mmodel->generate_delivery_note_number();
         $data["order_list"] = $this->mmodel->get_order_list_for_del_note();
+        $data["deliveries"] = $this->mmodel->get_all('delivery_note');
         
 
         $this->load->view('delivery_note_list',$data);
@@ -815,7 +816,7 @@ if($this->input->get('stock_id')){
         $this->load->view('top_header');
         $this->load->view('side_menu');
 
-        $data["inventory_data"] = $this->mmodel->get_inventory_report();
+        $data["purchased_data"] = $this->mmodel->get_purchased_order_report();
         $this->load->view('purchase_order_report',$data);
         $this->load->view('footer');
         $this->load->view('js/inventoryreportjs');

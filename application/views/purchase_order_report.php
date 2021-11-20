@@ -53,16 +53,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($inventory_data->result() as $sales) { ?>
+                <?php foreach ($purchased_data->result() as $purchase) { ?>
                     <tr>
-                        <td><?php echo $sales->item_code?></td>
-                        <td><?php echo $sales->item_name?></td>
-                        <td><?php echo $sales->sku_name?></td>
-                        <td><?php echo $sales->unit_type?></td>
-                        <td><?php echo number_format($sales->selling_price,2,'.',',')?></td>
-                        <td><?php echo $sales->qty?></td>
-                        <td><?php echo $sales->qty?></td>
-                        <td><?php echo number_format($sales->selling_price,2,'.',',')?></td>
+                        <td><?php echo $purchase->item_code?></td>
+                        <td><?php echo $purchase->item_name?></td>
+                        <td><?php echo $purchase->item_group?></td>
+                        <td><?php echo $purchase->unit_type?></td>
+                        <td><?php echo number_format($purchase->unit_price,2,'.',',')?></td>
+                        <td><?php echo $purchase->item_qty?></td>
+                        <td><?php echo $purchase->supplier_id?></td>
+                        <td><?php echo number_format($purchase->total_price,2,'.',',')?></td>
                        
                     </tr>
                 <?php } ?>

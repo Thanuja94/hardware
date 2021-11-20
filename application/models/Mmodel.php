@@ -287,11 +287,25 @@ class MModel extends CI_Model
     {
 
         return $this->db->query("
-        SELECT order_id
+        Select 
+            approve.order_id 
         FROM 
-        approve 
-        WHERE
-        `status` =1
+            approve 
+        Where 
+            order_id 
+        NOT IN
+                 (SELECT 
+                        approve.order_id 
+                    FROM 
+                        approve 
+                    INNER JOIN  
+                        delivery_note 
+                    ON
+                        approve.order_id = delivery_note.order_id
+                    WHERE
+                        `status` =1) 
+        And 
+            `status` =1
 
         ");
     }
@@ -781,6 +795,33 @@ class MModel extends CI_Model
                 im.unit_type, 
                 im.item_group,
                 s.selling_price 
+                "
+        );
+    }
+    public function get_purchased_order_report(){
+
+        return $this->db->query(
+            "
+            SELECT 
+                sid.item_code,
+                im.item_name,
+                im.item_group,
+                im.unit_type,
+                sid.unit_price,
+                sid.item_qty,
+                si.supplier_id,
+                sid.total_price
+            
+            FROM
+                 sup_invoice_details as sid
+            INNER JOIN 
+                item_master as im
+            ON
+                sid.item_code = im.item_code
+            INNER JOIN 
+                sup_invoice as si
+             ON
+                sid.sup_inv_id = si.sup_inv_id
                 "
         );
     }

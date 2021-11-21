@@ -96,7 +96,7 @@ class MModel extends CI_Model
                 ON
                 customer.cus_id = ih.cus_id
                 INNER JOIN
-                item_include_on_invoice AS il
+                invoice_details AS il
                 ON 
                     ih.id = il.invoice_id
                 INNER JOIN
@@ -532,8 +532,8 @@ class MModel extends CI_Model
                     $stocks['invoice_id'] = $header['invoice_id'];
 
                     unset($lines['stock_id']);
-                    $this->db->insert('item_include_on_invoice', $lines);
-                    $this->db->insert('stock_include_on_invoice', $stocks);
+                    $this->db->insert('invoice_details', $lines);
+                    $this->db->insert('invoice_stock_details', $stocks);
                 }
                 return $invoice_id;
                 
@@ -672,24 +672,24 @@ class MModel extends CI_Model
         item_master.item_group, 
         customer.customer_name,
         invoice.invoice_date, 
-        item_include_on_invoice.unit_price, 
-        item_include_on_invoice.item_qty, 
+        invoice_details.unit_price, 
+        invoice_details.item_qty, 
         item_master.unit_type, 
-        item_include_on_invoice.total_price, 
-        item_include_on_invoice.discount
+        invoice_details.total_price, 
+        invoice_details.discount
     FROM
     customer 
     INNER JOIN
         invoice
         ON customer.cus_id = invoice.cus_id
         INNER JOIN
-        item_include_on_invoice
+        invoice_details
         ON 
-            invoice.id = item_include_on_invoice.invoice_id
+            invoice.id = invoice_details.invoice_id
         INNER JOIN
         item_master
         ON 
-        item_include_on_invoice.item_code = item_master.item_code
+        invoice_details.item_code = item_master.item_code
         ";
 
         if (isset($param_data['from']) && $from != '')
@@ -755,7 +755,7 @@ class MModel extends CI_Model
                                     FROM
                                         item_master AS im
                                         INNER JOIN
-                                        item_include_on_invoice AS il
+                                        invoice_details AS il
                                         ON 
                                             il.item_code = im.item_code
                                         GROUP BY
@@ -838,7 +838,7 @@ class MModel extends CI_Model
                                 SUM( il.item_qty ) AS qty 
                             FROM
                                 item_master AS im
-                                INNER JOIN item_include_on_invoice AS il ON im.item_code = il.item_code 
+                                INNER JOIN invoice_details AS il ON im.item_code = il.item_code 
                             GROUP BY
                                 im.item_code,
                                 im.item_name 

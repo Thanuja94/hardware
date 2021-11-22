@@ -811,8 +811,8 @@ if($this->input->get('stock_id')){
     {
         $object['controller'] = $this;
         $object['active_tab'] = "purchase_order_report";
-        $object['title'] = "Purchase Order Report";
-        $this->load->view('header', $object);
+        $object['title'] = "Kethmi Holding Hardware Stores";
+        $this->load->view('report_header', $object);
         $this->load->view('top_header');
         $this->load->view('side_menu');
 

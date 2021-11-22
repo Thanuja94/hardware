@@ -24,7 +24,25 @@
       "autoWidth": false,
       dom: 'Bfrtip',
       buttons: [
-            'copy', 'excel','csv', 'print'
+            'copy', 'excel','csv', {
+                extend: 'print',
+                title: '',
+                messageTop: '<div class="col-sm-8">' +
+                    '<h3 class="m-0 text-dark" style="text-align:right;">Kethmi Holding Hardware Stores</h3>' +
+                    '<h5 class="m-0 text-dark" style="text-align:right;">Building No, Street Name, City, Street,Zip</h5>' +
+                    '<h5 class="m-0 text-dark" style="text-align:right;">Contact No: 011 255 6666 / 077 5677 722</h5>' +
+                    
+                    '</div>'+
+                    '<div class="row">' +
+                    '<div class="col-sm-4">' +
+                    '</div>' +
+                    '<div class="col-sm-4" style="text-align:center;">' +
+                    '<h5>Inventory Report</h5>' +
+                    '</div>' +
+                    '<div class="col-sm-4">' +
+                    '</div>' +
+                    '</div>'
+            }
         ]
     });
   });

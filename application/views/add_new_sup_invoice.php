@@ -90,7 +90,7 @@
                                     <label for="inputEmail3" class="col-md-4 col-form-label">Gross Total</label>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" id="gross_total" placeholder=""
-                                            name="gross_total">
+                                            name="gross_total" required>
                                     </div>
                                 </div>
                             </div>

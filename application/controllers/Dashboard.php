@@ -452,7 +452,10 @@ if($this->input->get('stock_id')){
         $this->load->view('top_header');
         $this->load->view('side_menu');
 
-        $data["inventory_data"] = $this->mmodel->get_inventory_report();
+        $from = $this->input->get('from');
+        $to = $this->input->get('to');
+
+        $data["inventory_data"] = $this->mmodel->get_inventory_report($from,$to);
         $this->load->view('inventoryreport',$data);
         $this->load->view('footer');
         $this->load->view('js/inventoryreportjs');

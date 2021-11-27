@@ -35,27 +35,45 @@
                 <div class="row">
                     <div class="col-sm-3">
                     </div>
-                    <div class="col-sm-3">
-                                    <!-- text input -->
+                    <div class="col-sm-9">
+                        <form action="" method="GET" class="">
+
+                            <div class="row">
+
+                                <div class="col-md-4">
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-4 col-form-label">From Date</label>
                                         <div class="col-sm-8">
-                                            <input type="date" class="form-control" id="from" placeholder=""
-                                                   name="from"
-                                            >
+                                            <input type="date" value="<?php echo $this->input->get('from')?>"
+                                                class="form-control" id="from" placeholder="" name="from">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+
+                                <div class="col-md-4">
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-4 col-form-label">To Date</label>
                                         <div class="col-sm-8">
-                                            <input type="date" class="form-control" id="to" placeholder="" name="to">
+                                            <input type="date" class="form-control"
+                                                value="<?php echo $this->input->get('to')?>" id="to" placeholder=""
+                                                name="to">
                                         </div>
                                     </div>
                                 </div>
-                    <div class="col-sm-3">
+
+
+                                <div class="col-md-3">
+
+                                    <input type="submit" class=" btn btn-primary" id="btn_add" value="Filter">
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
+
+
+
+
                 </div>
                 <div class="row">
 

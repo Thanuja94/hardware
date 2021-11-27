@@ -778,37 +778,109 @@ class MModel extends CI_Model
         ");
 
         }
+        return $this->db->query("
+            SELECT
+                im.id, 
+                im.item_code, 
+                im.item_name, 
+                SUM(il.item_qty) AS qty, 
+                SUM(il.total_price) AS total_price, 
+                im.unit_type,
+                il.unit_price,
+                im.item_group
+            
+             FROM
+                 item_master AS im
+            INNER JOIN
+                 invoice_details AS il
+            ON 
+                il.item_code = im.item_code
+            INNER JOIN 
+                invoice AS i
+            ON
+                i.id = il.invoice_id
+
+              
+            GROUP BY
+                im.id, 
+                im.item_code, 
+                im.item_name, 
+                il.unit_price, 
+                im.unit_type,
+                im.item_group 
+            
+                                        
+        ");
         
     }
 
-    public function get_inventory_report(){
+    public function get_inventory_report($from = '', $to =''){
 
-        
-
-        return $this->db->query(
-            "SELECT
+        if($from && $to){
+            return $this->db->query(
+                "SELECT
                 im.id, 
                 im.item_code, 
                 im.item_name, 
                 im.unit_type, 
                 im.item_group,
-                SUM(s.qty) as qty, 
-                s.selling_price 
+                SUM(sd.qty) as qty, 
+                sd.selling_price 
                 
             FROM
                 item_master AS im
                 
                 INNER JOIN
-                stock_details AS s
+                stock_details AS sd
                 ON 
-                    im.id = s.item_id 
+                    im.id = sd.item_id 
+                                INNER JOIN 
+                                        stock as s
+                                        ON 
+                                        sd.stock_id = s.stock_id
+                                        WHERE s.purchase_date between '$from' and '$to' 
             GROUP BY
                 im.id, 
                 im.item_code, 
                 im.item_name, 
                 im.unit_type, 
                 im.item_group,
-                s.selling_price 
+                sd.selling_price 
+                
+                    "
+            );
+        }
+
+        return $this->db->query(
+            "SELECT
+            im.id, 
+            im.item_code, 
+            im.item_name, 
+            im.unit_type, 
+            im.item_group,
+            SUM(sd.qty) as qty, 
+            sd.selling_price 
+            
+        FROM
+            item_master AS im
+            
+            INNER JOIN
+            stock_details AS sd
+            ON 
+                im.id = sd.item_id 
+                            INNER JOIN 
+                                    stock as s
+                                    ON 
+                                    sd.stock_id = s.stock_id
+                                    
+        GROUP BY
+            im.id, 
+            im.item_code, 
+            im.item_name, 
+            im.unit_type, 
+            im.item_group,
+            sd.selling_price 
+            
                 "
         );
     }

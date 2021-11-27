@@ -433,7 +433,11 @@ if($this->input->get('stock_id')){
         $this->load->view('header', $object);
         $this->load->view('top_header');
         $this->load->view('side_menu');
-        $data["sales_data"] = $this->mmodel->get_item_sales_history();
+
+        $from = $this->input->get('from');
+        $to = $this->input->get('to');
+
+        $data["sales_data"] = $this->mmodel->get_item_sales_history($from,$to);
         $this->load->view('salesreport',$data);
         $this->load->view('footer');
         $this->load->view('js/salesreportjs');

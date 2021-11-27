@@ -740,36 +740,50 @@ class MModel extends CI_Model
                             ");
     }
 
-    public function get_item_sales_history(){
-        return $this->db->query("
-                                    SELECT
-                                        im.id, 
-                                        im.item_code, 
-                                        im.item_name, 
-                                        SUM(il.item_qty) AS qty, 
-                                        SUM(il.total_price) AS total_price, 
-                                        im.unit_type,
-                                        il.unit_price,
-                                        im.item_group
-                                        
-                                    FROM
-                                        item_master AS im
-                                        INNER JOIN
-                                        invoice_details AS il
-                                        ON 
-                                            il.item_code = im.item_code
-                                        GROUP BY
-                                        im.id, 
-                                        im.item_code, 
-                                        im.item_name, 
-                                        il.unit_price, 
-                                        im.unit_type,
-                                        im.item_group 
+    public function get_item_sales_history($from = '', $to =''){
+
+        if($from && $to){
+            return $this->db->query("
+            SELECT
+                im.id, 
+                im.item_code, 
+                im.item_name, 
+                SUM(il.item_qty) AS qty, 
+                SUM(il.total_price) AS total_price, 
+                im.unit_type,
+                il.unit_price,
+                im.item_group
+            
+             FROM
+                 item_master AS im
+            INNER JOIN
+                 invoice_details AS il
+            ON 
+                il.item_code = im.item_code
+            INNER JOIN 
+                invoice AS i
+            ON
+                i.id = il.invoice_id
+
+            WHERE i.invoice_date between '$from' and '$to'    
+            GROUP BY
+                im.id, 
+                im.item_code, 
+                im.item_name, 
+                il.unit_price, 
+                im.unit_type,
+                im.item_group 
+            
                                         
         ");
+
+        }
+        
     }
 
     public function get_inventory_report(){
+
+        
 
         return $this->db->query(
             "SELECT

@@ -47,7 +47,27 @@ $(function() {
                     '</div>' +
                     '<div class="col-sm-4">' +
                     '</div>' +
-                    '</div>'
+                    '</div>' +
+
+                    '<div class="row">' +
+                    '<div class="col-sm-3">' +
+                    '</div>'+
+                    '<div class="col-sm-3">'+
+                                    '<!-- text input -->'+
+                                    '<div class="form-group row">'+
+                                        '<label for="inputEmail3" class="col-sm-4 col-form-label">From</label>'+
+                                        '<?php echo $this->input->get('from')?>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-sm-3">'+
+                                    '<div class="form-group row">'+
+                                        '<label for="inputEmail3" class="col-sm-4 col-form-label">To</label>'+
+                                        '<?php echo $this->input->get('to')?>'+
+                                    '</div>'+
+                                '</div>'+
+                    '<div class="col-sm-3">'+
+                    '</div>'+
+                '</div>'
             }
         ]
     });

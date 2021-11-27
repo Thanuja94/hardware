@@ -72,25 +72,34 @@ function removeRecord(itemCode) {
                 this.$btn_save_sup_inv.on("click", function(e) {
                     e.preventDefault();
 
-                    if ($('#example1 tbody tr').length > 0) {
+                    if(context.$gross_total.val() && context.$net_total.val()){
+
+                        if ($('#example1 tbody tr').length > 0) {
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, Save it!'
+                            }).then((result) => {
+                                if (result.value) {
+                                    context.saveSupInvoice();
+                                }
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'please add records before submit!',
+                            })
+                        }
+                    } else{
                         Swal.fire({
-                            title: 'Are you sure?',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Yes, Save it!'
-                        }).then((result) => {
-                            if (result.value) {
-                                context.saveSupInvoice();
-                            }
-                        })
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'please add records before submit!',
-                        })
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Please Fill all require data!',
+                            })
                     }
                 });
 

@@ -798,8 +798,36 @@ class MModel extends CI_Model
                 "
         );
     }
-    public function get_purchased_order_report(){
+    public function get_purchased_order_report($from = '', $to =''){
 
+
+        if($from && $to){
+            return $this->db->query(
+                "
+                SELECT 
+                    sid.item_code,
+                    im.item_name,
+                    im.item_group,
+                    im.unit_type,
+                    sid.unit_price,
+                    sid.item_qty,
+                    si.supplier_id,
+                    sid.total_price
+                
+                FROM
+                     sup_invoice_details as sid
+                INNER JOIN 
+                    item_master as im
+                ON
+                    sid.item_code = im.item_code
+                INNER JOIN 
+                    sup_invoice as si
+                 ON
+                    sid.sup_inv_id = si.sup_inv_id
+                WHERE si.invoice_date between '$from' and '$to'
+                "
+            );
+        }
         return $this->db->query(
             "
             SELECT 

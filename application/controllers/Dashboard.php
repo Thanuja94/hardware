@@ -816,7 +816,10 @@ if($this->input->get('stock_id')){
         $this->load->view('top_header');
         $this->load->view('side_menu');
 
-        $data["purchased_data"] = $this->mmodel->get_purchased_order_report();
+        $from = $this->input->get('from');
+        $to = $this->input->get('to');
+
+        $data["purchased_data"] = $this->mmodel->get_purchased_order_report($from, $to);
         $this->load->view('purchase_order_report',$data);
         $this->load->view('footer');
         $this->load->view('js/purchaseorderreportjs');

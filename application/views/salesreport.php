@@ -85,13 +85,13 @@
                                 <table id="salereporttable" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th style="text-aligh:left;">Item Code</th>
-                                            <th style="text-aligh:left;">Item Name</th>
-                                            <th style="text-aligh:left;">Item Group</th>
-                                            <th style="text-aligh:left;">Unit Price (Rs.)</th>
-                                            <th style="text-aligh:left;">Type</th>
-                                            <th style="text-aligh:left;">Sales Qty</th>
-                                            <th style="text-aligh:left;">Total Price (Rs.)</th>
+                                            <th style="text-align:left;">Item Code</th>
+                                            <th style="text-align:left;">Item Name</th>
+                                            <th style="text-align:left;">Item Group</th>
+                                            <th style="text-align:left;">Unit Price (Rs.)</th>
+                                            <th style="text-align:left;">Type</th>
+                                            <th style="text-align:left;">Sales Qty</th>
+                                            <th style="text-align:left;">Total Price (Rs.)</th>
                                         </tr>
                                     </thead>
                                     <tbody>

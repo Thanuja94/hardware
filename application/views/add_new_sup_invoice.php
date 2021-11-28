@@ -89,7 +89,7 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label">Gross Total</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="gross_total" placeholder=""
+                                        <input type="number" class="form-control" id="gross_total" placeholder=""
                                             name="gross_total" required>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label">Discount</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="discount" placeholder=""
+                                        <input type="number" class="form-control" id="discount" placeholder=""
                                             name="discount">
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label">Net Total</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="net_total" placeholder=""
+                                        <input type="number" class="form-control" id="net_total" placeholder=""
                                             name="net_total">
                                     </div>
                                 </div>

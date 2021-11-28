@@ -85,13 +85,13 @@
                                 <table id="inventoryreporttable" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th style="text-aligh:left;">Item Code</th>
-                                            <th style="text-aligh:left;">Product Name</th>
-                                            <th style="text-aligh:left;">Item Group</th>
-                                            <th style="text-aligh:left;">On Hand Qty</th>
+                                            <th style="text-align:left;">Item Code</th>
+                                            <th style="text-align:left;">Product Name</th>
+                                            <th style="text-align:left;">Item Group</th>
+                                            <th style="text-align:left;">On Hand Qty</th>
                                             <!-- <th style="text-aligh:left;">Reorder Level</th> -->
-                                            <th style="text-aligh:left;">Unit Type</th>
-                                            <th style="text-aligh:left;">Unit Price (Rs.)</th>
+                                            <th style="text-align:left;">Unit Type</th>
+                                            <th style="text-align:left;">Unit Price (Rs.)</th>
                                         </tr>
                                     </thead>
                                     <tbody>

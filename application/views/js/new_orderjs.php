@@ -82,26 +82,38 @@ function removeRecord(itemCode) {
                 this.$btn_save_order.on("click", function(e) {
                     e.preventDefault();
 
-                    if ($('#example1 tbody tr').length > 0) {
-                        Swal.fire({
-                            title: 'Are you sure?',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Yes, Save it!'
-                        }).then((result) => {
-                            if (result.value) {
-                                context.saveOrderRecords();
-                            }
-                        })
+                    if (context.$order_date.val()) {
+
+                        if ($('#example1 tbody tr').length > 0) {
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, Save it!'
+                            }).then((result) => {
+                                if (result.value) {
+                                    context.saveOrderRecords();
+                                }
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'please add records before submit!',
+                            })
+                        }
+
                     } else {
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
-                            text: 'please add records before submit!',
+                            text: 'Please Fill all require data!',
                         })
                     }
+
+
                 });
 
             },
@@ -112,7 +124,8 @@ function removeRecord(itemCode) {
                 loadingWidget.show();
                 const context = this;
                 $.get(
-                    baseUrl + "get_item_details_for_order?item_code=" + context.$item_code.val(),
+                    baseUrl + "get_item_details_for_order?item_code=" + context.$item_code
+                .val(),
                     function(res) {
                         context.addNewRecord($.parseJSON(res));
                     }
@@ -145,7 +158,7 @@ function removeRecord(itemCode) {
                 // this.$discountTotal += Number(discount);
 
                 // if (this.$item_qty.val() > 0)
-                    qty = this.$item_qty.val();
+                qty = this.$item_qty.val();
                 // this.$qtyTotal += Number(qty);
 
                 this.$table.append(
@@ -166,9 +179,9 @@ function removeRecord(itemCode) {
                 // this.$txt_total_qty.val(this.$qtyTotal);
                 // this.$txt_total_discount.val(this.$discountTotal);
                 // this.$txt_total_discount.val(Number(this.$txt_total_discount.val()) + Number(
-                    // discount));
+                // discount));
                 // this.$txt_net_total.val(Number(this.$txt_gross_total.val()) - Number(this
-                    // .$txt_total_discount.val()));
+                // .$txt_total_discount.val()));
 
                 loadingWidget.hide();
 
@@ -184,7 +197,7 @@ function removeRecord(itemCode) {
                     arrayOfThisRow[1] = $(this).find(".qty").html();
                     // arrayOfThisRow[1] = $(this).find(".selling_price").html();
                     // arrayOfThisRow[2] = $(this).find(".discount_pct").html();
-                   
+
                     // arrayOfThisRow[4] = $(this).find(".total_value").html();
                     myTableArray.push(arrayOfThisRow);
                 });
@@ -217,8 +230,8 @@ function removeRecord(itemCode) {
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href =
-                                        "<?php echo base_url()?>order_list" 
-                                        
+                                        "<?php echo base_url()?>order_list"
+
                                 }
                             })
                         }

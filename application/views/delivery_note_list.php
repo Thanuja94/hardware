@@ -172,7 +172,7 @@
                             <li class="fa fa-chair">&nbsp;&nbsp;</li>
                             <label for="input_username">Item QTY</label>
                             <br />
-                            <input class="form-control input-rounded" name="item_qty" id="item_qty" placeholder=""
+                            <input class="form-control input-rounded" name="item_qty" id="item_qty" placeholder="" type="number"
                                 required="">
                         </div>
 

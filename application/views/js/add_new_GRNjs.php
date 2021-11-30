@@ -22,7 +22,7 @@ function removeRecord(itemCode) {
 
     let parentId = 'item' + itemCode;
 
-   
+
 
     $('#item' + itemCode).remove();
 
@@ -64,33 +64,45 @@ function removeRecord(itemCode) {
                     e.preventDefault();
                     context.addNewTranRecord();
                 });
-                this.$stock_id.on("change", function (e) {
-                        e.preventDefault();
-                        context.getItems();
-                    });
+                this.$stock_id.on("change", function(e) {
+                    e.preventDefault();
+                    context.getItems();
+                });
                 this.$btn_save_grn.on("click", function(e) {
                     e.preventDefault();
 
-                    if ($('#example1 tbody tr').length > 0) {
-                        Swal.fire({
-                            title: 'Are you sure?',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Yes, Save it!'
-                        }).then((result) => {
-                            if (result.value) {
-                                context.saveGrnRecords();
-                            }
-                        })
+                    if (context.$delivered_date.val() && context.$received_by.val()) {
+
+                        if ($('#example1 tbody tr').length > 0) {
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, Save it!'
+                            }).then((result) => {
+                                if (result.value) {
+                                    context.saveGrnRecords();
+                                }
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'please add records before submit!',
+                            })
+                        }
+
                     } else {
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
-                            text: 'please add records before submit!',
+                            text: 'Please Fill all require data!',
                         })
                     }
+
+
                 });
 
             },
@@ -101,7 +113,8 @@ function removeRecord(itemCode) {
                 loadingWidget.show();
                 const context = this;
                 $.get(
-                    baseUrl + "get_item_details_for_grn?item_code=" + context.$item_code.val() + "&stock_id=" +context.$stock_id.val(),
+                    baseUrl + "get_item_details_for_grn?item_code=" + context.$item_code.val() +
+                    "&stock_id=" + context.$stock_id.val(),
                     function(res) {
                         context.addNewRecord($.parseJSON(res));
                     }
@@ -110,27 +123,30 @@ function removeRecord(itemCode) {
                     loadingWidget.hide();
                 });
             },
-            getItems: function () {
-                    var stock_id = document.getElementById("stock_id").value;
-                    loadingWidget.show();
-                    $('#item_code').children().remove();
-                    $.get(
-                        baseUrl + "get_items_for_stocks?stock_id=" + stock_id,
-                        function (res) {
-                            res = $.parseJSON(res);
-                            $.each(res, ( key, value ) => {
-                                $('#item_code').append(
-                                    $('<option>',{value: value.item_code,text: value.item_code})
-                                )
-                            })
+            getItems: function() {
+                var stock_id = document.getElementById("stock_id").value;
+                loadingWidget.show();
+                $('#item_code').children().remove();
+                $.get(
+                    baseUrl + "get_items_for_stocks?stock_id=" + stock_id,
+                    function(res) {
+                        res = $.parseJSON(res);
+                        $.each(res, (key, value) => {
+                            $('#item_code').append(
+                                $('<option>', {
+                                    value: value.item_code,
+                                    text: value.item_code
+                                })
+                            )
+                        })
 
-                            loadingWidget.hide();
-                        }
-                    ).fail(function (error) {
-                        console.log("error", error);
                         loadingWidget.hide();
-                    });
-                },
+                    }
+                ).fail(function(error) {
+                    console.log("error", error);
+                    loadingWidget.hide();
+                });
+            },
             addNewRecord: function(data) {
                 var total = 0;
                 var qty = 1;
@@ -140,9 +156,9 @@ function removeRecord(itemCode) {
 
                 ++rowCount;
 
-                
-                    qty = this.$item_qty.val();
-               
+
+                qty = this.$item_qty.val();
+
 
                 this.$table.append(
                     `<tr class='data_row' id='item` + rowCount + `' >` +
@@ -157,30 +173,30 @@ function removeRecord(itemCode) {
                     +`<tr>`
                 )
 
-               
+
 
                 loadingWidget.hide();
 
                 this.$item_qty.val('');
-               
+
             },
             saveGrnRecords: function() {
 
                 $('#example1 tbody tr').each(function() {
                     var arrayOfThisRow = [];
 
-                    
+
                     arrayOfThisRow[0] = $(this).find(".item_code").html();
                     arrayOfThisRow[1] = $(this).find(".qty").html();
                     arrayOfThisRow[2] = $(this).find(".stock_id").html();
-                   
+
                     myTableArray.push(arrayOfThisRow);
                 });
 
                 $.post(
                     baseUrl + "save_grn", {
-                       
-                       // stock_id: this.$stock_id.val(),
+
+                        // stock_id: this.$stock_id.val(),
                         supplier_id: this.$supplier_id.val(),
                         grn_id: this.$grn_id.val(),
                         delivered_date: this.$delivered_date.val(),
@@ -200,8 +216,8 @@ function removeRecord(itemCode) {
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href =
-                                        "<?php echo base_url()?>GRN" 
-                                        
+                                        "<?php echo base_url()?>GRN"
+
                                 }
                             })
                         }

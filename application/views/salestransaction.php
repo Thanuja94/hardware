@@ -66,7 +66,7 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-4 col-form-label">Tel No.</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="cus_tel" placeholder="" name="cus_tel">
+                                            <input type="number" class="form-control" id="cus_tel" placeholder="" name="cus_tel">
                                         </div>
                                     </div>
                                 </div>

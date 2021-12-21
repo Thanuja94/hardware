@@ -161,7 +161,9 @@ class MModel extends CI_Model
                                         sto.qty,
                                         sto.purchased_price,
                                         sto.selling_price,
-                                        sto.purchase_date 
+                                        sto.purchase_date,
+                                        sto.stock_id,
+                                        sto.remaining_qty
                                     FROM
                                     stock_details AS sto
                                         INNER JOIN item_master AS im ON sto.item_id = im.id ";
@@ -216,6 +218,23 @@ class MModel extends CI_Model
                         item_master AS im
                                                
                     WHERE im.item_code='$item_code'
+        ");
+    }
+    public function get_stock_remaining($item_code, $stock_id)
+    {
+
+        return $this->db->query("
+            SELECT  
+                sd.remaining_qty
+            FROM 
+                stock_details as sd
+            INNER JOIN 
+                item_master as i
+            ON 
+                i.id = sd.item_id
+            WHERE 
+                sd.stock_id = '$stock_id'
+            AND i.item_code = '$item_code'
         ");
     }
 
@@ -530,6 +549,16 @@ class MModel extends CI_Model
                     
                     $stocks['stock_id'] = $lines['stock_id'];
                     $stocks['invoice_id'] = $header['invoice_id'];
+                    
+                    $qty = $lines["item_qty"];
+                    $stock_id  = $lines['stock_id'];
+                    $item_id  = $lines['item_code'];
+
+                    $query = "UPDATE stock_details
+                    SET remaining_qty = remaining_qty - $qty
+                    WHERE stock_id = '$stock_id' and item_id = (SELECT id from item_master where item_code = '$item_id')";
+                    // var_dump($query);
+                    $this->db->query($query);
 
                     unset($lines['stock_id']);
                     $this->db->insert('invoice_details', $lines);

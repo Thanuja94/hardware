@@ -145,6 +145,7 @@ if($this->input->get('stock_id')){
         $data['purchase_date'] = $this->input->get_post('date');
         $data['last_modified_at'] = date('Y-m-d H:i:s');
         $data['last_modified_by'] = $this->session->userdata('name');
+        $data['remaining_qty'] = $this->input->get_post('qty');
         $stock_id = $this->input->get_post('stock_id');
 
         $res = $this->mmodel->insert('stock_details', $data);

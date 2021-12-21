@@ -103,11 +103,11 @@
                                     foreach ($inventory->result() as $row) {
                                         ?>
                                         <tr>
-                                        <td><?php echo $row->item_code; ?></td>
+                                        <td><?php echo $row->stock_id; ?></td>
                                         <td><?php echo $row->item_code; ?></td>
                                         <td><?php echo $row->item_name; ?></td>
                                         <td><?php echo $row->item_group; ?></td>                                       
-                                        <td><?php echo $row->qty; ?></td>
+                                        <td><?php echo $row->remaining_qty; ?></td>
                                         <td><?php echo $row->unit_type; ?></td>
                                         <td><?php echo $row->selling_price; ?></td>
                                         </tr>
